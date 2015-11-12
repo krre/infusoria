@@ -4,6 +4,8 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
+    QCoreApplication::setApplicationName("Infusoria");
+    QCoreApplication::setApplicationVersion("0.1.0");
 
     QCommandLineParser parser;
     parser.setApplicationDescription("Simulator of AI units");
