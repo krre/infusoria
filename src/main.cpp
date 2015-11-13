@@ -8,14 +8,14 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion("0.1.0");
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Simulator of AI units");
+    parser.setApplicationDescription("Simulator of Infusoria AI units");
     parser.addHelpOption();
     parser.addVersionOption();
-    parser.addPositionalArgument("source", QCoreApplication::translate("main", "Infusoria file to run"));
-
+    parser.addPositionalArgument("source", QCoreApplication::translate("main", "AI unit to create or run"));
     parser.addOptions({
-        {{"d", "dump"}, QCoreApplication::translate("main", "Dump IR code")},
-        {{"e", "execute"}, QCoreApplication::translate("main", "Execute in memory")}
+        {{"r", "repl"}, QCoreApplication::translate("main", "Interactive mode")},
+        {{"n", "new"}, QCoreApplication::translate("main", "Create new AI unit")}
+
     });
 
     parser.process(app);
@@ -26,10 +26,16 @@ int main(int argc, char *argv[])
         const QStringList args = parser.positionalArguments();
         if (args.count() == 0) {
             qDebug() << "Infusoria: unknown source file";
-            parser.showHelp();
         } else {
             QString filePath = args.at(0);
             qDebug() << filePath;
+
+            if (parser.isSet("new")) {
+                qDebug() << "new";
+            } else if (parser.isSet("repl")) {
+                qDebug() << "repl";
+            }
+
             return app.exec();
         }
     }
