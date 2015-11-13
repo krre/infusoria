@@ -1,3 +1,2 @@
 # Infusoria
-Simulator of primitive artificial intellect
-
+Simulator of primitive artificial intelligence
