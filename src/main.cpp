@@ -1,5 +1,7 @@
 #include <QCoreApplication>
 #include <QtCore>
+#include "global/macro.h"
+#include "database/init.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,18 +27,18 @@ int main(int argc, char *argv[])
     } else {
         const QStringList args = parser.positionalArguments();
         if (args.count() == 0) {
-            qDebug() << "Infusoria: unknown source file";
+            console("Infusoria: unknown source file");
         } else {
             QString filePath = args.at(0);
             qDebug() << filePath;
 
             if (parser.isSet("new")) {
-                qDebug() << "new";
+                Init::create(filePath);
             } else if (parser.isSet("repl")) {
                 qDebug() << "repl";
+            } else {
+                return app.exec();
             }
-
-            return app.exec();
         }
     }
 
