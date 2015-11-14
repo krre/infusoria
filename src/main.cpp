@@ -1,16 +1,17 @@
 #include <QCoreApplication>
 #include <QtCore>
+#include "global/app.h"
 #include "global/macro.h"
 #include "database/init.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
-    QCoreApplication::setApplicationName("Infusoria");
-    QCoreApplication::setApplicationVersion("0.1.0");
+    QCoreApplication::setApplicationName(App::name());
+    QCoreApplication::setApplicationVersion(App::version());
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Simulator of Infusoria AI units");
+    parser.setApplicationDescription(QString("Simulator of %1 AI units").arg(App::name()));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("source", QCoreApplication::translate("main", "AI unit to create or run"));
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
     } else {
         const QStringList args = parser.positionalArguments();
         if (args.count() == 0) {
-            console("Infusoria: unknown source file");
+            console("Unknown source file");
         } else {
             QString filePath = args.at(0);
             qDebug() << filePath;

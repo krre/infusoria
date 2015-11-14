@@ -12,4 +12,5 @@ SOURCES += \
 
 HEADERS += \
     src/database/init.h \
-    src/global/macro.h
+    src/global/macro.h \
+    src/global/app.h

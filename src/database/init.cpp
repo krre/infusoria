@@ -1,4 +1,5 @@
 #include "init.h"
+#include "../global/app.h"
 #include "../global/macro.h"
 
 bool Init::create(const QString& path)
@@ -40,7 +41,7 @@ void Init::initRecords(const QSqlDatabase& db)
     query.prepare("INSERT INTO Defs (name, value) "
                   "VALUES (:name, :value)");
     query.bindValue(":name", "version");
-    query.bindValue(":value", "0.1.0");
+    query.bindValue(":value", App::version());
     bool result = query.exec();
     if (!result) {
         qDebug("Error occurred insert record");
