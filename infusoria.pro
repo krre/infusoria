@@ -9,10 +9,12 @@ CONFIG -= app_bundle
 SOURCES += \
     src/main.cpp \
     src/database/init.cpp \
-    src/net/websocketmanager.cpp
+    src/net/websocketmanager.cpp \
+    src/mind/mind.cpp
 
 HEADERS += \
     src/database/init.h \
     src/global/macro.h \
     src/global/app.h \
-    src/net/websocketmanager.h
+    src/net/websocketmanager.h \
+    src/mind/mind.h

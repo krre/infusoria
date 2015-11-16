@@ -3,6 +3,7 @@
 #include "global/app.h"
 #include "global/macro.h"
 #include "database/init.h"
+#include "mind/mind.h"
 
 int main(int argc, char *argv[])
 {
@@ -38,6 +39,8 @@ int main(int argc, char *argv[])
             } else if (parser.isSet("repl")) {
                 qDebug() << "repl";
             } else {
+                Mind mind(filePath);
+                mind.run();
                 return app.exec();
             }
         }
