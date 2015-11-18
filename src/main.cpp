@@ -32,17 +32,26 @@ int main(int argc, char *argv[])
             console("Unknown source file");
         } else {
             QString filePath = args.at(0);
-            qDebug() << filePath;
 
             if (parser.isSet("new")) {
                 Init::create(filePath);
-            } else if (parser.isSet("repl")) {
+                return EXIT_SUCCESS;
+            }
+
+            QFileInfo checkFile(filePath);
+            if (!(checkFile.exists() && checkFile.isFile())) {
+                qDebug() << "File" << filePath << "not found";
+                return EXIT_SUCCESS;
+            }
+
+            if (parser.isSet("repl")) {
                 qDebug() << "repl";
             } else {
                 Mind mind(filePath);
                 mind.run();
-                return app.exec();
             }
+
+            return app.exec();
         }
     }
 
