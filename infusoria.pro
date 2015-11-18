@@ -10,11 +10,13 @@ SOURCES += \
     src/main.cpp \
     src/database/init.cpp \
     src/net/websocketmanager.cpp \
-    src/mind/mind.cpp
+    src/mind/mind.cpp \
+    src/repl/repl.cpp
 
 HEADERS += \
     src/database/init.h \
     src/global/macro.h \
     src/global/app.h \
     src/net/websocketmanager.h \
-    src/mind/mind.h
+    src/mind/mind.h \
+    src/repl/repl.h
