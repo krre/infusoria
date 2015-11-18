@@ -45,15 +45,21 @@ int main(int argc, char *argv[])
                 return EXIT_SUCCESS;
             }
 
+            Mind* mind;
+            Repl* repl;
+
             if (parser.isSet("repl")) {
-                Repl repl(filePath);
-                repl.run();
+                repl = new Repl(filePath);
+                repl->run();
             } else {
-                Mind mind(filePath);
-                mind.run();
+                mind = new Mind(filePath);
+                mind->run();
             }
 
-            return app.exec();
+            int exitCode = app.exec();
+            delete mind;
+            delete repl;
+            return exitCode;
         }
     }
 
