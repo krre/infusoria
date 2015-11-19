@@ -3,12 +3,12 @@
 
 WebSocketManager::WebSocketManager()
 {
-    wss = new QWebSocketServer("Infusoria", QWebSocketServer::NonSecureMode, this);
-    connect(wss, &QWebSocketServer::acceptError, this, &WebSocketManager::onAcceptError);
-    connect(wss, &QWebSocketServer::serverError, this, &WebSocketManager::onServerError);
-    connect(wss, &QWebSocketServer::newConnection, this, &WebSocketManager::onNewConnection);
-    wss->listen();
-    console("Infusoria AI unit started. Port " << wss->serverPort());
+    server = new QWebSocketServer("Infusoria", QWebSocketServer::NonSecureMode, this);
+    connect(server, &QWebSocketServer::acceptError, this, &WebSocketManager::onAcceptError);
+    connect(server, &QWebSocketServer::serverError, this, &WebSocketManager::onServerError);
+    connect(server, &QWebSocketServer::newConnection, this, &WebSocketManager::onNewConnection);
+    server->listen();
+    console("Infusoria AI unit started. Port " << server->serverPort());
 }
 
 void WebSocketManager::onAcceptError(QAbstractSocket::SocketError socketError)

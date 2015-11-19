@@ -18,6 +18,6 @@ private slots:
     void onNewConnection();
 
 private:
-    QWebSocketServer* wss;
-    QWebSocket* ws;
+    QWebSocketServer* server;
+    QWebSocket* client;
 };
