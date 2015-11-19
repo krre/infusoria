@@ -1,4 +1,5 @@
 #include "mind.h"
+#include "../global/macro.h"
 
 Mind::Mind(const QString& filePath) : filePath(filePath)
 {
@@ -7,5 +8,5 @@ Mind::Mind(const QString& filePath) : filePath(filePath)
 
 void Mind::run()
 {
-    qDebug() << "Mind run with" << filePath;
+    console("Mind run with " << filePath.toStdString());
 }

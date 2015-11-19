@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
             QFileInfo checkFile(filePath);
             if (!(checkFile.exists() && checkFile.isFile())) {
-                qDebug() << "File" << filePath << "not found";
+                console("File " << filePath.toStdString() << " not found");
                 return EXIT_SUCCESS;
             }
 

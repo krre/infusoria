@@ -1,4 +1,5 @@
 #include "repl.h"
+#include "../global/macro.h"
 
 Repl::Repl(const QString& filePath) : filePath(filePath)
 {
@@ -7,6 +8,6 @@ Repl::Repl(const QString& filePath) : filePath(filePath)
 
 void Repl::run()
 {
-    qDebug() << "REPL run with" << filePath;
+    console("REPL run with " << filePath.toStdString());
 }
 
