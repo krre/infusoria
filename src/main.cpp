@@ -5,12 +5,16 @@
 #include "database/init.h"
 #include "repl/repl.h"
 #include "mind/mind.h"
+#include "logger/logger.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
     QCoreApplication::setApplicationName(App::name());
     QCoreApplication::setApplicationVersion(App::version());
+
+    QSharedPointer<Mind> mind;
+    QSharedPointer<Repl> repl;
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QString("Simulator of %1 AI units").arg(App::name()));
@@ -45,21 +49,15 @@ int main(int argc, char *argv[])
                 return EXIT_SUCCESS;
             }
 
-            Mind* mind;
-            Repl* repl;
-
             if (parser.isSet("repl")) {
-                repl = new Repl(filePath);
+                repl = repl.create(filePath);
                 repl->run();
             } else {
-                mind = new Mind(filePath);
+                mind = mind.create(filePath);
                 mind->run();
             }
 
-            int exitCode = app.exec();
-            delete mind;
-            delete repl;
-            return exitCode;
+            return app.exec();
         }
     }
 

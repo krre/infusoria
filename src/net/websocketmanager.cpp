@@ -13,7 +13,6 @@ WebSocketManager::WebSocketManager()
 }
 
 WebSocketManager::~WebSocketManager() {
-    console("WebSocketManager destructor");
     server->close();
     qDeleteAll(clients.begin(), clients.end());
 }
