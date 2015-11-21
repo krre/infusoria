@@ -7,12 +7,10 @@ class Logger : public QObject
 
 public:
     static Logger& instance();
+    void setDirectory(QFileInfo& fileInfo);
 
 private:
     Logger();
     ~Logger();
-
-signals:
-
-public slots:
+    QString directory;
 };

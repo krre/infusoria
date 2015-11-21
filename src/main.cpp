@@ -43,11 +43,14 @@ int main(int argc, char *argv[])
                 return EXIT_SUCCESS;
             }
 
-            QFileInfo checkFile(filePath);
-            if (!(checkFile.exists() && checkFile.isFile())) {
+            QFileInfo fileInfo(filePath);
+            if (!(fileInfo.exists() && fileInfo.isFile())) {
                 console("File " << filePath.toStdString() << " not found");
                 return EXIT_SUCCESS;
             }
+
+            Logger& logger = Logger::instance();
+            logger.setDirectory(fileInfo);
 
             if (parser.isSet("repl")) {
                 repl = repl.create(filePath);
