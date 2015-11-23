@@ -8,7 +8,7 @@ class Logger : public QObject
 
 public:
     static Logger& instance();
-    void setDirectory(QFileInfo& fileInfo);
+    void setInfuFile(QFileInfo& fileInfo);
 
     class Helper
     {
@@ -30,4 +30,5 @@ private:
     Logger();
     ~Logger();
     QString directory;
+    QString name;
 };

@@ -6,9 +6,10 @@ Logger &Logger::instance()
     return logger;
 }
 
-void Logger::setDirectory(QFileInfo &fileInfo)
+void Logger::setInfuFile(QFileInfo &fileInfo)
 {
-    this->directory = fileInfo.dir().path() + "/log-" + fileInfo.baseName();
+    name = fileInfo.baseName();
+    directory = fileInfo.dir().path() + "/log-" + name;
     QDir dir;
     dir.mkdir(directory);
 }

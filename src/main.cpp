@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
             }
 
             Logger& logger = Logger::instance();
-            logger.setDirectory(fileInfo);
+            logger.setInfuFile(fileInfo);
 
             QStringList list;
             list << "one" << "two";
