@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
             QStringList list;
             list << "one" << "two";
-            Logger::Helper().stream() << list << 5;
+            LOGGER() << list << 5;
 
             if (parser.isSet("repl")) {
                 repl = repl.create(filePath);

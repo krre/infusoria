@@ -2,6 +2,8 @@
 #include <QtCore>
 #include <iostream>
 
+#define LOGGER() Logger::Helper().stream()
+
 class Logger : public QObject
 {
     Q_OBJECT
