@@ -18,7 +18,10 @@ public:
         QDebug& stream(){ return debug; }
 
     private:
-        void write() { std::cout << buffer.trimmed().toStdString() << std::endl; }
+        void write() {
+            std::cout << QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd hh:mm:ss.zzz").toStdString() << std::endl;
+            std::cout << buffer.trimmed().toStdString() << std::endl << std::endl;
+        }
         QString buffer;
         QDebug debug;
     };
