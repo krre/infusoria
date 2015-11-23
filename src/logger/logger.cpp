@@ -1,5 +1,8 @@
 #include "logger.h"
 
+QString Logger::directory;
+QString Logger::name;
+
 Logger &Logger::instance()
 {
     static Logger logger;
@@ -22,4 +25,15 @@ Logger::Logger()
 Logger::~Logger()
 {
     qDebug() << "~logger";
+}
+
+void Logger::Helper::write() {
+    QString logPath = directory + "/" + name + "-" + QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd") + ".log";
+    QFile data(logPath);
+    if (data.open(QFile::WriteOnly | QIODevice::Append)) {
+        QTextStream out(&data);
+        out << QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "\n";
+        out << buffer.trimmed() << "\n\n";
+        out.flush();
+    }
 }

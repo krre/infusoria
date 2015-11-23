@@ -17,13 +17,10 @@ public:
     public:
         explicit Helper() : debug(&buffer) {}
         ~Helper() { write(); }
-        QDebug& stream(){ return debug; }
+        QDebug& stream() { return debug; }
 
     private:
-        void write() {
-            std::cout << QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd hh:mm:ss.zzz").toStdString() << std::endl;
-            std::cout << buffer.trimmed().toStdString() << std::endl << std::endl;
-        }
+        void write();
         QString buffer;
         QDebug debug;
     };
@@ -31,6 +28,6 @@ public:
 private:
     Logger();
     ~Logger();
-    QString directory;
-    QString name;
+    static QString directory;
+    static QString name;
 };
