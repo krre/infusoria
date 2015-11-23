@@ -17,7 +17,7 @@ public:
     public:
         explicit Helper() : debug(&buffer) {}
         ~Helper() { write(); }
-        QDebug& stream() { return debug; }
+        QDebug& stream() { return debug.noquote(); }
 
     private:
         void write();
