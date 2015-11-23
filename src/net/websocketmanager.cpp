@@ -1,5 +1,6 @@
 #include "websocketmanager.h"
 #include "../global/macro.h"
+#include "../logger/logger.h"
 
 WebSocketManager::WebSocketManager()
 {
@@ -9,7 +10,9 @@ WebSocketManager::WebSocketManager()
     connect(server, &QWebSocketServer::newConnection, this, &WebSocketManager::onNewConnection);
     connect(server, &QWebSocketServer::closed, this, &WebSocketManager::closed);
     server->listen();
-    console("Infusoria AI unit started. Port " << server->serverPort());
+    QString message = "Infusoria AI unit started. Port " + QString::number(server->serverPort());
+    console(message.toStdString());
+    LOGGER() << message;
 }
 
 WebSocketManager::~WebSocketManager() {
@@ -29,7 +32,6 @@ void WebSocketManager::onServerError(QWebSocketProtocol::CloseCode closeCode)
 
 void WebSocketManager::onNewConnection()
 {
-    console("New connection");
     QWebSocket *socket = server->nextPendingConnection();
 
     connect(socket, &QWebSocket::textMessageReceived, this, &WebSocketManager::processTextMessage);
@@ -37,13 +39,17 @@ void WebSocketManager::onNewConnection()
     connect(socket, &QWebSocket::disconnected, this, &WebSocketManager::socketDisconnected);
 
     clients << socket;
+
+    LOGGER() << "Connection with" << socket->localAddress().toString();
 }
 
 void WebSocketManager::processTextMessage(QString message)
 {
     QWebSocket *client = qobject_cast<QWebSocket*>(sender());
     if (client) {
+        LOGGER() << QString("RECEIVE from IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << message;
         client->sendTextMessage(message);
+        LOGGER() << QString("SEND to IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << message;
     }
 }
 

@@ -17,16 +17,6 @@ void Logger::setInfuFile(QFileInfo &fileInfo)
     dir.mkdir(directory);
 }
 
-Logger::Logger()
-{
-    qDebug() << "logger";
-}
-
-Logger::~Logger()
-{
-    qDebug() << "~logger";
-}
-
 void Logger::Helper::write() {
     QString logPath = directory + "/" + name + "-" + QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd") + ".log";
     QFile data(logPath);

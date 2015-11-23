@@ -26,8 +26,7 @@ public:
     };
 
 private:
-    Logger();
-    ~Logger();
+    Logger() {}
     static QString directory;
     static QString name;
 };

@@ -52,10 +52,6 @@ int main(int argc, char *argv[])
             Logger& logger = Logger::instance();
             logger.setInfuFile(fileInfo);
 
-            QStringList list;
-            list << "one" << "two";
-            LOGGER() << list << 5;
-
             if (parser.isSet("repl")) {
                 repl = repl.create(filePath);
                 repl->run();
