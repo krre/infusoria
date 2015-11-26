@@ -6,6 +6,7 @@ class Mind : public QObject
     Q_OBJECT
 public:
     explicit Mind(const QString& filePath);
+    ~Mind();
     void run();
 
 signals:
@@ -13,4 +14,5 @@ signals:
 private:
     QString filePath;
     WebSocketManager webSocketManager;
+    QSharedMemory sharedMemory;
 };

@@ -11,6 +11,7 @@ class WebSocketManager : public QObject
 public:
     WebSocketManager();
     ~WebSocketManager();
+    quint16 serverPort() { return server->serverPort(); }
 
 signals:
     void closed();
