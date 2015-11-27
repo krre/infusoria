@@ -13,7 +13,7 @@ QPointer<Settings> settings;
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
-    QCoreApplication::setApplicationName(App::name());
+    QCoreApplication::setApplicationName("Infusoria Manager");
     QCoreApplication::setApplicationVersion(App::version());
 
     QSharedPointer<Mind> mind;
@@ -21,13 +21,13 @@ int main(int argc, char *argv[])
     ::settings = new Settings();
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(QString("Simulator of %1 AI units").arg(App::name()));
+    parser.setApplicationDescription("Infusoria Manager");
     parser.addHelpOption();
     parser.addVersionOption();
-    parser.addPositionalArgument("source", QCoreApplication::translate("main", "AI unit to create or run"));
+    parser.addPositionalArgument("source", QCoreApplication::translate("main", "Infusoria unit to create or run"));
     parser.addOptions({
         {{"r", "repl"}, QCoreApplication::translate("main", "Interactive mode")},
-        {{"n", "new"}, QCoreApplication::translate("main", "Create new AI unit")}
+        {{"n", "new"}, QCoreApplication::translate("main", "Create new Infusoria unit")}
 
     });
 
