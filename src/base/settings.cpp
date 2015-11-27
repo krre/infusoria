@@ -6,6 +6,8 @@ Settings::Settings(QObject* parent) : QObject(parent)
     settings = new QSettings(path, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
     if (!QFile::exists(path)) {
+        setValue("Path", "workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
+        setValue("Path", "log", qApp->applicationDirPath() + "/log");
         setValue("Server", "port", 51000);
     }
 }

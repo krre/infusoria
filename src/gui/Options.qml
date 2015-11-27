@@ -28,11 +28,54 @@ Window {
         Layout.alignment: Qt.AlignHCenter
         spacing: indent
 
-        Item {
-            id: content
+        GridLayout {
             Layout.preferredWidth: parent.width
             Layout.fillHeight: true
             clip: true
+            columns: 3
+
+            Label {
+                text: qsTr("Workspace:")
+            }
+
+            TextField {
+                id: workspacePath
+                Layout.fillWidth: true
+                text: SETTINGS.value("Path", "workspace")
+            }
+
+            Button {
+                implicitWidth: 30
+                text: "..."
+                onClicked: {}
+            }
+
+            Label {
+                text: qsTr("Log:")
+            }
+
+            TextField {
+                id: logPath
+                Layout.fillWidth: true
+                text: SETTINGS.value("Path", "log")
+            }
+
+            Button {
+                implicitWidth: 30
+                text: "..."
+                onClicked: {}
+            }
+
+            Label {
+                text: qsTr("Port:")
+            }
+
+            TextField {
+                id: port
+                Layout.fillWidth: true
+                Layout.columnSpan: 2
+                text: SETTINGS.value("Server", "port")
+            }
         }
 
         RowLayout {
