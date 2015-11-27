@@ -1,2 +1,2 @@
-# Infusoria
-Simulator of primitive artificial intelligence
+# Infusoria Manager
+Multi-agent system for managing intelligent agents named Infusoria

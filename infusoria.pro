@@ -26,3 +26,6 @@ HEADERS += \
 
 RESOURCES += \
     src/qml.qrc
+
+DISTFILES += \
+    README.md
