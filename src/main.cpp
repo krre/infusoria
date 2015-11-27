@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
         if (parser.isSet("gui")) {
             QQmlApplicationEngine engine;
 
+            engine.rootContext()->setContextProperty("SETTINGS", settings);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 
             return app.exec();
