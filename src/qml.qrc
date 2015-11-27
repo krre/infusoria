@@ -2,5 +2,15 @@
     <qresource prefix="/">
         <file>gui/main.qml</file>
         <file>gui/Options.qml</file>
+        <file>gui/components/filedialog/FileDialogBase.qml</file>
+        <file>gui/components/filedialog/FileDialogDirectory.qml</file>
+        <file>gui/components/filedialog/FileDialogOpen.qml</file>
+        <file>gui/components/messagedialog/MessageDialogBase.qml</file>
+        <file>gui/components/messagedialog/MessageDialogError.qml</file>
+        <file>gui/components/messagedialog/MessageDialogInformation.qml</file>
+        <file>gui/components/messagedialog/MessageDialogQuestion.qml</file>
+        <file>gui/components/messagedialog/MessageDialogWarning.qml</file>
+        <file>gui/components/BrowseButton.qml</file>
+        <file>gui/components/WindowDialog.qml</file>
     </qresource>
 </RCC>
