@@ -12,7 +12,8 @@ SOURCES += \
     src/net/websocketmanager.cpp \
     src/mind/mind.cpp \
     src/repl/repl.cpp \
-    src/logger/logger.cpp
+    src/logger/logger.cpp \
+    src/base/settings.cpp
 
 HEADERS += \
     src/database/init.h \
@@ -21,4 +22,5 @@ HEADERS += \
     src/net/websocketmanager.h \
     src/mind/mind.h \
     src/repl/repl.h \
-    src/logger/logger.h
+    src/logger/logger.h \
+    src/base/settings.h

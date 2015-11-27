@@ -6,6 +6,9 @@
 #include "repl/repl.h"
 #include "mind/mind.h"
 #include "logger/logger.h"
+#include "base/settings.h"
+
+QPointer<Settings> settings;
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +18,7 @@ int main(int argc, char *argv[])
 
     QSharedPointer<Mind> mind;
     QSharedPointer<Repl> repl;
+    ::settings = new Settings();
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QString("Simulator of %1 AI units").arg(App::name()));
