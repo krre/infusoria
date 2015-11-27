@@ -1,5 +1,6 @@
 #include "websocketmanager.h"
 #include "../global/macro.h"
+#include "../global/app.h"
 #include "../logger/logger.h"
 #include "../base/settings.h"
 
@@ -14,7 +15,7 @@ WebSocketManager::WebSocketManager()
     connect(server, &QWebSocketServer::closed, this, &WebSocketManager::closed);
     quint16 port = settings->value("Server", "port").toUInt();
     server->listen(QHostAddress::Any, port);
-    QString message = "Infusoria Manager started. Port " + QString::number(server->serverPort());
+    QString message = QString("%1 started. Port %2").arg(App::name()).arg(server->serverPort());
     console(message.toStdString());
     LOGGER() << message;
 }

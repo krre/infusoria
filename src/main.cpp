@@ -14,7 +14,7 @@ QPointer<Settings> settings;
 int main(int argc, char *argv[])
 {
     QApplication appication(argc, argv);
-    appication.setApplicationName("Infusoria Manager");
+    appication.setApplicationName(App::name());
     appication.setApplicationVersion(App::version());
 
     QSharedPointer<Mind> mind;
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     ::settings = new Settings();
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Infusoria Manager");
+    parser.setApplicationDescription(App::name());
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("source", QCoreApplication::translate("main", "Infusoria unit to create or run"));

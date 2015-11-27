@@ -6,7 +6,7 @@ import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: mainRoot
-    title: "Infusoria Manager"
+    title: APP.name
     width: 800
     height: 600
     visible: true
@@ -15,7 +15,7 @@ ApplicationWindow {
             title: qsTr("Help")
 
             MenuItem {
-                text: qsTr("About Infusoria Manager")
+                text: qsTr(String("About %1").arg(APP.name))
                 onTriggered: aboutDialog.open()
             }
         }
@@ -51,7 +51,7 @@ ApplicationWindow {
 
     MessageDialog {
         id: aboutDialog
-        title: qsTr("About Infusoria Manager")
+        title: qsTr(String("About %1").arg(APP.name))
         standardButtons: StandardButton.Ok
         text: String("<h3>%1 %2</h3>
               Based on Qt %3<br>
