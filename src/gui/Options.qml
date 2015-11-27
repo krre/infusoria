@@ -18,57 +18,72 @@ WindowDialog {
         SETTINGS.setValue("Network", "port", port.text)
     }
 
-    GridLayout {
+    ColumnLayout {
         width: parent.width
-        columns: 3
 
-        Label {
-            text: qsTr("Workspace:")
-        }
+        GroupBox {
+            title: qsTr("Directory")
+            Layout.preferredWidth: parent.width
 
-        TextField {
-            id: workspacePath
-            Layout.fillWidth: true
-            text: SETTINGS.value("Path", "workspace")
-        }
+            GridLayout {
+                width: parent.width
+                columns: 3
 
-        BrowseButton {
-            onClicked: {
-                var selectDirectoryDialog = Dialog.selectDirectory(root)
-                selectDirectoryDialog.accepted.connect(function() {
-                    workspacePath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
-                })
+                Label {
+                    text: qsTr("Workspace:")
+                }
+
+                TextField {
+                    id: workspacePath
+                    Layout.fillWidth: true
+                    text: SETTINGS.value("Path", "workspace")
+                }
+
+                BrowseButton {
+                    onClicked: {
+                        var selectDirectoryDialog = Dialog.selectDirectory(root)
+                        selectDirectoryDialog.accepted.connect(function() {
+                            workspacePath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
+                        })
+                    }
+                }
+
+                Label {
+                    text: qsTr("Log:")
+                }
+
+                TextField {
+                    id: logPath
+                    Layout.fillWidth: true
+                    text: SETTINGS.value("Path", "log")
+                }
+
+                BrowseButton {
+                    onClicked: {
+                        var selectDirectoryDialog = Dialog.selectDirectory(root)
+                        selectDirectoryDialog.accepted.connect(function() {
+                            logPath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
+                        })
+                    }
+                }
             }
         }
 
-        Label {
-            text: qsTr("Log:")
-        }
+        GroupBox {
+            title: qsTr("Network")
+            Layout.preferredWidth: parent.width
 
-        TextField {
-            id: logPath
-            Layout.fillWidth: true
-            text: SETTINGS.value("Path", "log")
-        }
+            RowLayout {
 
-        BrowseButton {
-            onClicked: {
-                var selectDirectoryDialog = Dialog.selectDirectory(root)
-                selectDirectoryDialog.accepted.connect(function() {
-                    logPath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
-                })
+                Label {
+                    text: qsTr("Port:")
+                }
+
+                TextField {
+                    id: port
+                    text: SETTINGS.value("Network", "port")
+                }
             }
-        }
-
-        Label {
-            text: qsTr("Port:")
-        }
-
-        TextField {
-            id: port
-            Layout.fillWidth: true
-            Layout.columnSpan: 2
-            text: SETTINGS.value("Network", "port")
         }
     }
 }
