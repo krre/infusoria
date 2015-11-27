@@ -26,7 +26,7 @@ ApplicationWindow {
 
             MenuItem {
                 text: qsTr(String("About %1").arg(APP.name))
-                onTriggered: aboutDialog.open()
+                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/gui/About.qml")
             }
         }
     }
@@ -56,15 +56,5 @@ ApplicationWindow {
             width: width,
             height: height
         })
-    }
-
-    MessageDialog {
-        id: aboutDialog
-        title: qsTr(String("About %1").arg(APP.name))
-        standardButtons: StandardButton.Ok
-        text: String("<h3>%1 %2</h3>
-              Based on Qt %3<br>
-              Build date %4<br><br>
-              Copyright (c) 2015, Vladimir Zarypov").arg(APP.name).arg(APP.version).arg(APP.qtVersion).arg(APP.buildDate)
     }
 }

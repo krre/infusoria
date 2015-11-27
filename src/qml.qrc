@@ -14,5 +14,6 @@
         <file>gui/components/WindowDialog.qml</file>
         <file>gui/dialog.js</file>
         <file>gui/utils.js</file>
+        <file>gui/About.qml</file>
     </qresource>
 </RCC>

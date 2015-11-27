@@ -44,4 +44,5 @@ DISTFILES += \
     src/gui/components/BrowseButton.qml \
     src/gui/components/WindowDialog.qml \
     src/gui/dialog.js \
-    src/gui/utils.js
+    src/gui/utils.js \
+    src/gui/About.qml
