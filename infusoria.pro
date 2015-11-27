@@ -12,7 +12,8 @@ SOURCES += \
     src/mind/mind.cpp \
     src/repl/repl.cpp \
     src/logger/logger.cpp \
-    src/base/settings.cpp
+    src/base/settings.cpp \
+    src/global/utils.cpp
 
 HEADERS += \
     src/database/init.h \
@@ -22,7 +23,8 @@ HEADERS += \
     src/mind/mind.h \
     src/repl/repl.h \
     src/logger/logger.h \
-    src/base/settings.h
+    src/base/settings.h \
+    src/global/utils.h
 
 RESOURCES += \
     src/qml.qrc

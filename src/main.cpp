@@ -3,6 +3,7 @@
 #include <QtQml>
 #include "global/app.h"
 #include "global/macro.h"
+#include "global/utils.h"
 #include "database/init.h"
 #include "repl/repl.h"
 #include "mind/mind.h"
@@ -39,9 +40,11 @@ int main(int argc, char *argv[])
     } else {
         if (parser.isSet("gui")) {
             App app;
+            Utils utils;
 
             QQmlApplicationEngine engine;
             engine.rootContext()->setContextProperty("APP", &app);
+            engine.rootContext()->setContextProperty("Utils", &utils);
             engine.rootContext()->setContextProperty("SETTINGS", settings);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 
