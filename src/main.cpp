@@ -1,5 +1,6 @@
-#include <QCoreApplication>
+#include <QApplication>
 #include <QtCore>
+#include <QtQml>
 #include "global/app.h"
 #include "global/macro.h"
 #include "database/init.h"
@@ -12,9 +13,9 @@ QPointer<Settings> settings;
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication app(argc, argv);
-    QCoreApplication::setApplicationName("Infusoria Manager");
-    QCoreApplication::setApplicationVersion(App::version());
+    QApplication app(argc, argv);
+    app.setApplicationName("Infusoria Manager");
+    app.setApplicationVersion(App::version());
 
     QSharedPointer<Mind> mind;
     QSharedPointer<Repl> repl;
@@ -26,9 +27,9 @@ int main(int argc, char *argv[])
     parser.addVersionOption();
     parser.addPositionalArgument("source", QCoreApplication::translate("main", "Infusoria unit to create or run"));
     parser.addOptions({
+        {{"g", "gui"}, QCoreApplication::translate("main", "GUI mode")},
         {{"r", "repl"}, QCoreApplication::translate("main", "Interactive mode")},
         {{"n", "new"}, QCoreApplication::translate("main", "Create new Infusoria unit")}
-
     });
 
     parser.process(app);
@@ -36,6 +37,14 @@ int main(int argc, char *argv[])
     if (argc == 1) {
         parser.showHelp();
     } else {
+        if (parser.isSet("gui")) {
+            QQmlApplicationEngine engine;
+
+            engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
+
+            return app.exec();
+        }
+
         const QStringList args = parser.positionalArguments();
         if (args.count() == 0) {
             console("Unknown source file");

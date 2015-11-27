@@ -1,6 +1,5 @@
 TEMPLATE = app
-QT += sql websockets
-QT -= gui
+QT += widgets qml quick sql websockets
 
 CONFIG += c++11
 CONFIG += console
@@ -24,3 +23,6 @@ HEADERS += \
     src/repl/repl.h \
     src/logger/logger.h \
     src/base/settings.h
+
+RESOURCES += \
+    src/qml.qrc
