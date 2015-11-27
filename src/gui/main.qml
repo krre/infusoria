@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
+import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: mainRoot
@@ -9,6 +10,17 @@ ApplicationWindow {
     width: 800
     height: 600
     visible: true
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("Help")
+
+            MenuItem {
+                text: qsTr("About Infusoria Manager")
+                onTriggered: aboutDialog.open()
+            }
+        }
+    }
+
 
     Component.onCompleted: {
         var geometry = SETTINGS.map("Gui")
@@ -35,5 +47,15 @@ ApplicationWindow {
             width: width,
             height: height
         })
+    }
+
+    MessageDialog {
+        id: aboutDialog
+        title: qsTr("About Infusoria Manager")
+        standardButtons: StandardButton.Ok
+        text: String("<h3>%1 %2</h3>
+              Based on Qt %3<br>
+              Build date %4<br><br>
+              Copyright (c) 2015, Vladimir Zarypov").arg(APP.name).arg(APP.version).arg(APP.qtVersion).arg(APP.buildDate)
     }
 }

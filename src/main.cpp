@@ -13,9 +13,9 @@ QPointer<Settings> settings;
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    app.setApplicationName("Infusoria Manager");
-    app.setApplicationVersion(App::version());
+    QApplication appication(argc, argv);
+    appication.setApplicationName("Infusoria Manager");
+    appication.setApplicationVersion(App::version());
 
     QSharedPointer<Mind> mind;
     QSharedPointer<Repl> repl;
@@ -32,18 +32,20 @@ int main(int argc, char *argv[])
         {{"n", "new"}, QCoreApplication::translate("main", "Create new Infusoria unit")}
     });
 
-    parser.process(app);
+    parser.process(appication);
 
     if (argc == 1) {
         parser.showHelp();
     } else {
         if (parser.isSet("gui")) {
-            QQmlApplicationEngine engine;
+            App app;
 
+            QQmlApplicationEngine engine;
+            engine.rootContext()->setContextProperty("APP", &app);
             engine.rootContext()->setContextProperty("SETTINGS", settings);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 
-            return app.exec();
+            return appication.exec();
         }
 
         const QStringList args = parser.positionalArguments();
@@ -74,7 +76,7 @@ int main(int argc, char *argv[])
                 mind->run();
             }
 
-            return app.exec();
+            return appication.exec();
         }
     }
 
