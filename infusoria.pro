@@ -28,4 +28,5 @@ RESOURCES += \
     src/qml.qrc
 
 DISTFILES += \
-    README.md
+    README.md \
+    src/gui/main.qml \
