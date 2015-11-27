@@ -13,7 +13,7 @@ WebSocketManager::WebSocketManager()
     connect(server, &QWebSocketServer::serverError, this, &WebSocketManager::onServerError);
     connect(server, &QWebSocketServer::newConnection, this, &WebSocketManager::onNewConnection);
     connect(server, &QWebSocketServer::closed, this, &WebSocketManager::closed);
-    quint16 port = settings->value("Server", "port").toUInt();
+    quint16 port = settings->value("Network", "port").toUInt();
     server->listen(QHostAddress::Any, port);
     QString message = QString("%1 started. Port %2").arg(App::name()).arg(server->serverPort());
     console(message.toStdString());

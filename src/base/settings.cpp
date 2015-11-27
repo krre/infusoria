@@ -8,7 +8,7 @@ Settings::Settings(QObject* parent) : QObject(parent)
     if (!QFile::exists(path)) {
         setValue("Path", "workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
         setValue("Path", "log", qApp->applicationDirPath() + "/log");
-        setValue("Server", "port", 51000);
+        setValue("Network", "port", 51000);
     }
 }
 

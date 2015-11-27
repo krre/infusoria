@@ -12,5 +12,7 @@
         <file>gui/components/messagedialog/MessageDialogWarning.qml</file>
         <file>gui/components/BrowseButton.qml</file>
         <file>gui/components/WindowDialog.qml</file>
+        <file>gui/dialog.js</file>
+        <file>gui/utils.js</file>
     </qresource>
 </RCC>

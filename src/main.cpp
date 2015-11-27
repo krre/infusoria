@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
             QQmlApplicationEngine engine;
             engine.rootContext()->setContextProperty("APP", &app);
-            engine.rootContext()->setContextProperty("Utils", &utils);
+            engine.rootContext()->setContextProperty("UTILS", &utils);
             engine.rootContext()->setContextProperty("SETTINGS", settings);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 

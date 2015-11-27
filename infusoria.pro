@@ -42,4 +42,6 @@ DISTFILES += \
     src/gui/components/messagedialog/MessageDialogQuestion.qml \
     src/gui/components/messagedialog/MessageDialogWarning.qml \
     src/gui/components/BrowseButton.qml \
-    src/gui/components/WindowDialog.qml
+    src/gui/components/WindowDialog.qml \
+    src/gui/dialog.js \
+    src/gui/utils.js

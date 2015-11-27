@@ -3,7 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.2
 import "components"
-
+import "dialog.js" as Dialog
 
 WindowDialog {
     property real indent: 10
@@ -12,7 +12,11 @@ WindowDialog {
     width: 500
     height: 200
 
-    onAccepted: {}
+    onAccepted: {
+        SETTINGS.setValue("Path", "workspace", workspacePath.text)
+        SETTINGS.setValue("Path", "log", logPath.text)
+        SETTINGS.setValue("Network", "port", port.text)
+    }
 
     GridLayout {
         width: parent.width
@@ -28,10 +32,13 @@ WindowDialog {
             text: SETTINGS.value("Path", "workspace")
         }
 
-        Button {
-            implicitWidth: 30
-            text: "..."
-            onClicked: {}
+        BrowseButton {
+            onClicked: {
+                var selectDirectoryDialog = Dialog.selectDirectory(root)
+                selectDirectoryDialog.accepted.connect(function() {
+                    workspacePath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
+                })
+            }
         }
 
         Label {
@@ -44,10 +51,13 @@ WindowDialog {
             text: SETTINGS.value("Path", "log")
         }
 
-        Button {
-            implicitWidth: 30
-            text: "..."
-            onClicked: {}
+        BrowseButton {
+            onClicked: {
+                var selectDirectoryDialog = Dialog.selectDirectory(root)
+                selectDirectoryDialog.accepted.connect(function() {
+                    logPath.text = UTILS.urlToPath(selectDirectoryDialog.fileUrl)
+                })
+            }
         }
 
         Label {
@@ -58,7 +68,7 @@ WindowDialog {
             id: port
             Layout.fillWidth: true
             Layout.columnSpan: 2
-            text: SETTINGS.value("Server", "port")
+            text: SETTINGS.value("Network", "port")
         }
     }
 }

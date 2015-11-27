@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
+import "utils.js" as Utils
 
 ApplicationWindow {
     id: mainRoot
@@ -16,7 +17,7 @@ ApplicationWindow {
 
             MenuItem {
                 text: qsTr("Options...")
-                onTriggered: createDynamicObject(mainRoot, "qrc:/gui/Options.qml")
+                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/gui/Options.qml")
             }
         }
 
@@ -55,16 +56,6 @@ ApplicationWindow {
             width: width,
             height: height
         })
-    }
-
-    function createDynamicObject(parent, url, properties) {
-        var component = Qt.createComponent(url)
-        var errorMessage = component.errorString()
-        if (errorMessage) {
-            print("Error loading component " + url + ":", errorMessage)
-        } else {
-            return component.createObject(parent, properties || {})
-        }
     }
 
     MessageDialog {
