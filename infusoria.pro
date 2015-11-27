@@ -30,3 +30,4 @@ RESOURCES += \
 DISTFILES += \
     README.md \
     src/gui/main.qml \
+    src/gui/Options.qml

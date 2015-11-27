@@ -12,6 +12,15 @@ ApplicationWindow {
     visible: true
     menuBar: MenuBar {
         Menu {
+            title: qsTr("Tools")
+
+            MenuItem {
+                text: qsTr("Options...")
+                onTriggered: createDynamicObject(mainRoot, "qrc:/gui/Options.qml")
+            }
+        }
+
+        Menu {
             title: qsTr("Help")
 
             MenuItem {
@@ -20,7 +29,6 @@ ApplicationWindow {
             }
         }
     }
-
 
     Component.onCompleted: {
         var geometry = SETTINGS.map("Gui")
@@ -47,6 +55,16 @@ ApplicationWindow {
             width: width,
             height: height
         })
+    }
+
+    function createDynamicObject(parent, url, properties) {
+        var component = Qt.createComponent(url)
+        var errorMessage = component.errorString()
+        if (errorMessage) {
+            print("Error loading component " + url + ":", errorMessage)
+        } else {
+            return component.createObject(parent, properties ? properties : {})
+        }
     }
 
     MessageDialog {
