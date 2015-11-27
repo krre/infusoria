@@ -1,6 +1,9 @@
 #include "websocketmanager.h"
 #include "../global/macro.h"
 #include "../logger/logger.h"
+#include "../base/settings.h"
+
+extern QPointer<Settings> settings;
 
 WebSocketManager::WebSocketManager()
 {
@@ -9,7 +12,8 @@ WebSocketManager::WebSocketManager()
     connect(server, &QWebSocketServer::serverError, this, &WebSocketManager::onServerError);
     connect(server, &QWebSocketServer::newConnection, this, &WebSocketManager::onNewConnection);
     connect(server, &QWebSocketServer::closed, this, &WebSocketManager::closed);
-    server->listen();
+    quint16 port = settings->value("Server", "port").toUInt();
+    server->listen(QHostAddress::Any, port);
     QString message = "Infusoria AI unit started. Port " + QString::number(server->serverPort());
     console(message.toStdString());
     LOGGER() << message;
