@@ -21,11 +21,12 @@ WindowDialog {
                 stayOnScreen = true
                 var warningDialog = Dialog.warningMessage(qsTr("File is exists. Overwrite?"))
                 warningDialog.yes.connect(function() {
-                    print("Overwrite!", filePath)
+                    UTILS.removeFile(filePath)
+                    INIT.create(filePath)
                     root.destroy()
                 })
             } else {
-                print("New!", filePath)
+                INIT.create(filePath)
             }
         }
     }

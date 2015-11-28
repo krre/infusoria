@@ -41,10 +41,12 @@ int main(int argc, char *argv[])
         if (parser.isSet("gui")) {
             App app;
             Utils utils;
+            Init init;
 
             QQmlApplicationEngine engine;
             engine.rootContext()->setContextProperty("APP", &app);
             engine.rootContext()->setContextProperty("UTILS", &utils);
+            engine.rootContext()->setContextProperty("INIT", &init);
             engine.rootContext()->setContextProperty("SETTINGS", settings);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 

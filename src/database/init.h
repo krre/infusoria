@@ -7,7 +7,7 @@ class Init : public QObject
     Q_OBJECT
 public:
     Init() {}
-    static bool create(const QString& path);
+    Q_INVOKABLE static bool create(const QString& filePath);
 
 private:
     static void initTables(const QSqlDatabase& db);

@@ -2,17 +2,17 @@
 #include "../global/app.h"
 #include "../global/macro.h"
 
-bool Init::create(const QString& path)
+bool Init::create(const QString& filePath)
 {
-    QFileInfo checkFile(path);
+    QFileInfo checkFile(filePath);
     if (checkFile.exists() && checkFile.isFile()) {
         console("File is exist");
         return false;
     }
 
     {
-        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", path);
-        db.setDatabaseName(path);
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
+        db.setDatabaseName(filePath);
         if (!db.open()) {
              qDebug("Error occurred opening the database");
              qDebug("%s", qPrintable(db.lastError().text()));
@@ -21,7 +21,7 @@ bool Init::create(const QString& path)
         initTables(db);
         initRecords(db);
     }
-    QSqlDatabase::removeDatabase(path);
+    QSqlDatabase::removeDatabase(filePath);
     console("AI unit created successfully");
     return true;
 }
