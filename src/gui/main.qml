@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import "utils.js" as Utils
+import "dialog.js" as Dialog
 
 ApplicationWindow {
     id: mainRoot
@@ -102,6 +103,17 @@ ApplicationWindow {
 
             Button {
                 text: qsTr("Add")
+                onClicked: {
+                    var selectFileDialog = Dialog.selectFile(mainRoot, {
+                        selectMultiple: true, folder: UTILS.pathToUrl(SETTINGS.value("Path", "workspace")),
+                        nameFilters: [ qsTr("Infusoria files (*.infu)"), qsTr("All files (*)") ]})
+                    selectFileDialog.accepted.connect(function() {
+                        for (var i in selectFileDialog.fileUrls) {
+                            var filePath = UTILS.urlToPath(selectFileDialog.fileUrls[i])
+                            print(filePath)
+                        }
+                    })
+                }
             }
 
             Button {
