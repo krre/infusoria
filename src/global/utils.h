@@ -13,4 +13,6 @@ public:
     QString homePath() { return QStandardPaths::writableLocation(QStandardPaths::HomeLocation); }
     Q_INVOKABLE static bool isFileExists(const QString& filePath);
     Q_INVOKABLE bool removeFile(const QString& filePath);
+    Q_INVOKABLE void saveInfuList(const QString& filePath, const QStringList &list);
+    Q_INVOKABLE QStringList loadInfuList(const QString& filePath);
 };

@@ -15,6 +15,7 @@ class App : public QObject
     Q_PROPERTY(unsigned int patch READ patch CONSTANT)
     Q_PROPERTY(QString buildDate READ buildDate CONSTANT)
     Q_PROPERTY(QString qtVersion READ qtVersion CONSTANT)
+    Q_PROPERTY(QString applicationDirPath READ applicationDirPath CONSTANT)
 
 public:
     static unsigned int major() { return MAJOR; }
@@ -26,4 +27,5 @@ public:
 
 private:
     QString qtVersion() { return QT_VERSION_STR; }
+    QString applicationDirPath() { return qApp->applicationDirPath(); }
 };

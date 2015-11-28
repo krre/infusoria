@@ -7,6 +7,7 @@ import "utils.js" as Utils
 import "dialog.js" as Dialog
 
 ApplicationWindow {
+    property string infuListPath: APP.applicationDirPath + "/infu.txt"
     id: mainRoot
     title: APP.name
     width: 800
@@ -65,6 +66,11 @@ ApplicationWindow {
                 y = 200
             }
         }
+
+        var infuList = UTILS.loadInfuList(infuListPath)
+        if (infuList) {
+            infuModel.addInfuList(infuList)
+        }
     }
 
     onClosing: {
@@ -74,10 +80,25 @@ ApplicationWindow {
             width: width,
             height: height
         })
+        var list = []
+        for (var i = 0; i < infuModel.count; i++) {
+            list.push(infuModel.get(i).path)
+        }
+        UTILS.saveInfuList(infuListPath, list)
     }
 
     ListModel {
         id: infuModel
+
+        function addInfuList(list, isUrl) {
+            for (var i in list) {
+                var path = isUrl ? UTILS.urlToPath(list[i]) : list[i]
+                if (UTILS.isFileExists(path)) {
+                    var name = UTILS.urlToFileName(list[i]).replace(".infu", "")
+                    infuModel.append({ name: name, state: "", path: path })
+                }
+            }
+        }
     }
 
     RowLayout {
@@ -119,11 +140,7 @@ ApplicationWindow {
                         selectMultiple: true, folder: UTILS.pathToUrl(SETTINGS.value("Path", "workspace")),
                         nameFilters: [ qsTr("Infusoria files (*.infu)"), qsTr("All files (*)") ]})
                     selectFileDialog.accepted.connect(function() {
-                        for (var i in selectFileDialog.fileUrls) {
-                            var path = UTILS.urlToPath(selectFileDialog.fileUrls[i])
-                            var name = UTILS.urlToFileName(selectFileDialog.fileUrls[i]).replace(".infu", "")
-                            infuModel.append({ name: name, state: "Offline", path: path })
-                        }
+                        infuModel.addInfuList(selectFileDialog.fileUrls, true)
                     })
                 }
             }
@@ -143,7 +160,7 @@ ApplicationWindow {
                 enabled: infuTable.currentRow !== -1
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
-                        infuModel.setProperty(rowIndex, "state", qsTr("Offline"))
+                        infuModel.setProperty(rowIndex, "state", "")
                     })
                 }
             }
