@@ -19,10 +19,6 @@ ApplicationWindow {
                 text: qsTr("New...")
             }
 
-            MenuItem {
-                text: qsTr("Run")
-            }
-
             MenuSeparator {}
 
             MenuItem {
@@ -76,5 +72,49 @@ ApplicationWindow {
             width: width,
             height: height
         })
+    }
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        TableView {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            frameVisible: false
+
+            TableViewColumn {
+                title: qsTr("Name")
+            }
+
+            TableViewColumn {
+                title: qsTr("State")
+            }
+
+            TableViewColumn {
+                title: qsTr("Path")
+            }
+        }
+
+        ColumnLayout {
+            Layout.alignment: Qt.AlignTop
+            Layout.margins: 7
+
+            Button {
+                text: qsTr("Add")
+            }
+
+            Button {
+                text: qsTr("Run")
+            }
+
+            Button {
+                text: qsTr("Stop")
+            }
+
+            Button {
+                text: qsTr("Remove")
+            }
+        }
     }
 }
