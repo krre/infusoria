@@ -13,6 +13,26 @@ ApplicationWindow {
     visible: true
     menuBar: MenuBar {
         Menu {
+            title: qsTr("Infusoria")
+
+            MenuItem {
+                text: qsTr("New...")
+            }
+
+            MenuItem {
+                text: qsTr("Run")
+            }
+
+            MenuSeparator {}
+
+            MenuItem {
+                text: qsTr("Exit")
+                shortcut: "Ctrl+Q"
+                onTriggered: Qt.quit()
+            }
+        }
+
+        Menu {
             title: qsTr("Tools")
 
             MenuItem {
