@@ -163,6 +163,12 @@ ApplicationWindow {
                     infuTable.selection.clear()
                 }
             }
+
+            Button {
+                text: qsTr("Clear")
+                enabled: infuTable.rowCount > 0
+                onClicked: infuModel.clear()
+            }
         }
     }
 }
