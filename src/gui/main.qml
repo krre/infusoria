@@ -76,25 +76,35 @@ ApplicationWindow {
         })
     }
 
+    ListModel {
+        id: infuModel
+    }
+
     RowLayout {
         anchors.fill: parent
         spacing: 0
 
         TableView {
+            id: infuTable
             Layout.fillWidth: true
             Layout.fillHeight: true
             frameVisible: false
+            model: infuModel
+            selectionMode: SelectionMode.ExtendedSelection
 
             TableViewColumn {
                 title: qsTr("Name")
+                role: "name"
             }
 
             TableViewColumn {
                 title: qsTr("State")
+                role: "state"
             }
 
             TableViewColumn {
                 title: qsTr("Path")
+                role: "path"
             }
         }
 
@@ -110,8 +120,9 @@ ApplicationWindow {
                         nameFilters: [ qsTr("Infusoria files (*.infu)"), qsTr("All files (*)") ]})
                     selectFileDialog.accepted.connect(function() {
                         for (var i in selectFileDialog.fileUrls) {
-                            var filePath = UTILS.urlToPath(selectFileDialog.fileUrls[i])
-                            print(filePath)
+                            var path = UTILS.urlToPath(selectFileDialog.fileUrls[i])
+                            var name = UTILS.urlToFileName(selectFileDialog.fileUrls[i]).replace(".infu", "")
+                            infuModel.append({ name: name, state: "Offline", path: path })
                         }
                     })
                 }
@@ -119,14 +130,38 @@ ApplicationWindow {
 
             Button {
                 text: qsTr("Run")
+                enabled: infuTable.currentRow !== -1
+                onClicked: {
+                    infuTable.selection.forEach( function(rowIndex) {
+                        infuModel.setProperty(rowIndex, "state", qsTr("Online"))
+                    })
+                }
             }
 
             Button {
                 text: qsTr("Stop")
+                enabled: infuTable.currentRow !== -1
+                onClicked: {
+                    infuTable.selection.forEach( function(rowIndex) {
+                        infuModel.setProperty(rowIndex, "state", qsTr("Offline"))
+                    })
+                }
             }
 
             Button {
                 text: qsTr("Remove")
+                enabled: infuTable.currentRow !== -1
+                onClicked: {
+                    var list = []
+                    infuTable.selection.forEach( function(rowIndex) {
+                        list.push(rowIndex)
+                    })
+                    // remove in reverse order
+                    for (var i = list.length - 1; i >= 0; i--) {
+                        infuModel.remove(i)
+                    }
+                    infuTable.selection.clear()
+                }
             }
         }
     }
