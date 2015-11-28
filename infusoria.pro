@@ -45,4 +45,5 @@ DISTFILES += \
     src/gui/components/WindowDialog.qml \
     src/gui/dialog.js \
     src/gui/utils.js \
-    src/gui/About.qml
+    src/gui/About.qml \
+    src/gui/NewInfusoria.qml

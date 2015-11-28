@@ -15,5 +15,6 @@
         <file>gui/dialog.js</file>
         <file>gui/utils.js</file>
         <file>gui/About.qml</file>
+        <file>gui/NewInfusoria.qml</file>
     </qresource>
 </RCC>

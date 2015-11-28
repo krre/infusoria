@@ -18,6 +18,7 @@ ApplicationWindow {
 
             MenuItem {
                 text: qsTr("New...")
+                onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/gui/NewInfusoria.qml")
             }
 
             MenuSeparator {}

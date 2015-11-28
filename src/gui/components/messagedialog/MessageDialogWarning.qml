@@ -4,6 +4,6 @@ import QtQuick.Dialogs 1.2
 MessageDialogBase {
     title: qsTr("Warning")
     icon: StandardIcon.Warning
-    standardButtons: StandardButton.Ok
+    standardButtons: StandardButton.Yes | StandardButton.No
 }
 
