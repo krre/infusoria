@@ -95,6 +95,9 @@ ApplicationWindow {
                 var path = isUrl ? UTILS.urlToPath(list[i]) : list[i]
                 if (UTILS.isFileExists(path)) {
                     var name = UTILS.urlToFileName(list[i]).replace(".infu", "")
+                    for (var j = 0; j < infuModel.count; j++) {
+                        if (infuModel.get(j).name === name) return
+                    }
                     infuModel.append({ name: name, state: "", path: path })
                 }
             }
