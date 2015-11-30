@@ -149,7 +149,7 @@ ApplicationWindow {
             }
 
             Button {
-                text: qsTr("Run")
+                text: qsTr("Start")
                 enabled: infuTable.currentRow !== -1
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
