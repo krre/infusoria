@@ -156,7 +156,7 @@ ApplicationWindow {
 
             Button {
                 text: qsTr("Start")
-                enabled: infuTable.currentRow !== -1
+                enabled: infuTable.currentRow !== -1 && infuModel.get(infuTable.currentRow).state === ""
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", qsTr("Online"))
@@ -167,7 +167,7 @@ ApplicationWindow {
 
             Button {
                 text: qsTr("Stop")
-                enabled: infuTable.currentRow !== -1
+                enabled: infuTable.currentRow !== -1 && infuModel.get(infuTable.currentRow).state === qsTr("Online")
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", "")
