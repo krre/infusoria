@@ -195,7 +195,13 @@ ApplicationWindow {
             Button {
                 text: qsTr("Clear")
                 enabled: infuTable.rowCount > 0
-                onClicked: infuModel.clear()
+                onClicked: {
+                    for (var i = infuModel.count - 1; i >= 0; i--) {
+                        if (!infuModel.get(i).state) {
+                            infuModel.remove(i)
+                        }
+                    }
+                }
             }
         }
     }
