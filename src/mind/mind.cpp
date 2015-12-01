@@ -5,7 +5,12 @@ Mind::Mind(const QString& filePath) : filePath(filePath)
 {
 }
 
-void Mind::run()
+void Mind::start()
 {
-    console("Mind run with " << this->filePath.toStdString());
+    qDebug() << "Mind started with" << filePath;
+}
+
+void Mind::stop()
+{
+    qDebug() << "Mind stopped with" << filePath;
 }

@@ -6,7 +6,6 @@
 #include "global/utils.h"
 #include "database/init.h"
 #include "repl/repl.h"
-#include "mind/mind.h"
 #include "logger/logger.h"
 #include "base/settings.h"
 #include "base/infucontroller.h"
@@ -19,10 +18,9 @@ int main(int argc, char *argv[])
     appication.setApplicationName(App::name());
     appication.setApplicationVersion(App::version());
 
-    QSharedPointer<Mind> mind;
+    ::settings = new Settings();
     QSharedPointer<Repl> repl;
     QSharedPointer<InfuController> infuController = QSharedPointer<InfuController>(new InfuController);
-    ::settings = new Settings();
 
     QCommandLineParser parser;
     parser.setApplicationDescription(App::name());
@@ -79,9 +77,6 @@ int main(int argc, char *argv[])
             if (parser.isSet("repl")) {
                 repl = repl.create(filePath);
                 repl->run();
-            } else {
-                mind = mind.create(filePath);
-                mind->run();
             }
 
             return appication.exec();

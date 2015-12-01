@@ -1,5 +1,6 @@
 #pragma once
 #include <QtCore>
+#include "../mind/mind.h"
 
 class InfuController : public QObject
 {
@@ -11,5 +12,7 @@ public:
 
 signals:
 
-public slots:
+private:
+    QHash<QString, Mind*> infusories;
+    WebSocketManager webSocketManager;
 };
