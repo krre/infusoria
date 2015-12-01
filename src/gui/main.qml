@@ -160,6 +160,7 @@ ApplicationWindow {
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", qsTr("Online"))
+                        INFU_CONTROLLER.startInfusoria(infuModel.get(rowIndex).path)
                     })
                 }
             }
@@ -170,6 +171,7 @@ ApplicationWindow {
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", "")
+                        INFU_CONTROLLER.stopInfusoria(infuModel.get(rowIndex).path)
                     })
                 }
             }

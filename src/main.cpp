@@ -9,6 +9,7 @@
 #include "mind/mind.h"
 #include "logger/logger.h"
 #include "base/settings.h"
+#include "base/infucontroller.h"
 
 QPointer<Settings> settings;
 
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
 
     QSharedPointer<Mind> mind;
     QSharedPointer<Repl> repl;
+    QSharedPointer<InfuController> infuController = QSharedPointer<InfuController>(new InfuController);
     ::settings = new Settings();
 
     QCommandLineParser parser;
@@ -48,6 +50,7 @@ int main(int argc, char *argv[])
             engine.rootContext()->setContextProperty("UTILS", &utils);
             engine.rootContext()->setContextProperty("INIT", &init);
             engine.rootContext()->setContextProperty("SETTINGS", settings);
+            engine.rootContext()->setContextProperty("INFU_CONTROLLER", infuController.data());
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 
             return appication.exec();
