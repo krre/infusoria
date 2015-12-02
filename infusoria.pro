@@ -5,6 +5,12 @@ CONFIG += c++11
 CONFIG += console
 CONFIG -= app_bundle
 
+DEFINES += \
+    "MAJOR=0" \
+    "MINOR=1" \
+    "PATCH=0" \
+    "NAME=\\\"Infusoria\\\""
+
 include(src/common/common.pri)
 
 SOURCES += \
