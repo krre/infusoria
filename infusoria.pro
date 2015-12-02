@@ -9,7 +9,8 @@ DEFINES += \
     "MAJOR=0" \
     "MINOR=1" \
     "PATCH=0" \
-    "NAME=\\\"Infusoria\\\""
+    "NAME=\\\"Infusoria\\\"" \
+    "NAME2=\\\"Manager\\\""
 
 include(src/common/common.pri)
 
