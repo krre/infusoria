@@ -17,7 +17,14 @@ int main(int argc, char *argv[])
     appication.setApplicationName(App::name());
     appication.setApplicationVersion(App::version());
 
-    ::settings = new Settings();
+    QString filePath = qApp->applicationDirPath() + "/infusoria.ini";
+    ::settings = new Settings(filePath);
+    if (!QFile::exists(filePath)) {
+        settings->setValue("Path", "workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
+        settings->setValue("Path", "log", qApp->applicationDirPath() + "/log");
+        settings->setValue("Network", "port", 51000);
+    }
+
     QSharedPointer<Repl> repl;
     QSharedPointer<InfuController> infuController = QSharedPointer<InfuController>(new InfuController);
 

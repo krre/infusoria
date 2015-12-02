@@ -1,15 +1,9 @@
 #include "settings.h"
 
-Settings::Settings(QObject* parent) : QObject(parent)
+Settings::Settings(const QString& filePath)
 {
-    QString path = qApp->applicationDirPath() + "/infusoria.ini";
-    settings = new QSettings(path, QSettings::IniFormat, this);
+    settings = new QSettings(filePath, QSettings::IniFormat, this);
     settings->setIniCodec("UTF-8");
-    if (!QFile::exists(path)) {
-        setValue("Path", "workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
-        setValue("Path", "log", qApp->applicationDirPath() + "/log");
-        setValue("Network", "port", 51000);
-    }
 }
 
 void Settings::setValue(const QString& group, const QString& key, const QVariant& value)
