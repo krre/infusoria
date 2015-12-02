@@ -14,7 +14,8 @@ SOURCES += \
     src/logger/logger.cpp \
     src/base/settings.cpp \
     src/global/utils.cpp \
-    src/base/infucontroller.cpp
+    src/base/infucontroller.cpp \
+    src/base/jsonrpc.cpp
 
 HEADERS += \
     src/database/init.h \
@@ -26,7 +27,8 @@ HEADERS += \
     src/logger/logger.h \
     src/base/settings.h \
     src/global/utils.h \
-    src/base/infucontroller.h
+    src/base/infucontroller.h \
+    src/base/jsonrpc.h
 
 RESOURCES += \
     src/qml.qrc
