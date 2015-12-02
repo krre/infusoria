@@ -22,7 +22,7 @@ SOURCES += \
     src/repl/repl.cpp \
     src/logger/logger.cpp \
     src/base/infucontroller.cpp \
-    src/base/jsonrpc.cpp
+    src/base/infurpc.cpp
 
 HEADERS += \
     src/database/init.h \
@@ -31,7 +31,7 @@ HEADERS += \
     src/repl/repl.h \
     src/logger/logger.h \
     src/base/infucontroller.h \
-    src/base/jsonrpc.h
+    src/base/infurpc.h
 
 RESOURCES += \
     src/qml.qrc
