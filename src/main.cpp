@@ -1,13 +1,12 @@
 #include <QApplication>
 #include <QtCore>
 #include <QtQml>
-#include "global/app.h"
-#include "global/macro.h"
-#include "global/utils.h"
+#include <app.h>
+#include <utils.h>
+#include <settings.h>
 #include "database/init.h"
 #include "repl/repl.h"
 #include "logger/logger.h"
-#include "base/settings.h"
 #include "base/infucontroller.h"
 
 QPointer<Settings> settings;
@@ -56,7 +55,7 @@ int main(int argc, char *argv[])
 
         const QStringList args = parser.positionalArguments();
         if (args.count() == 0) {
-            console("Unknown source file");
+            qDebug() << "Unknown source file";
         } else {
             QString filePath = args.at(0);
 
@@ -67,7 +66,7 @@ int main(int argc, char *argv[])
 
             QFileInfo fileInfo(filePath);
             if (!(fileInfo.exists() && fileInfo.isFile())) {
-                console("File " << filePath.toStdString() << " not found");
+                qDebug() << "File" << filePath << "not found";
                 return EXIT_SUCCESS;
             }
 

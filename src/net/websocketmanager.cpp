@@ -1,8 +1,7 @@
 #include "websocketmanager.h"
-#include "../global/macro.h"
-#include "../global/app.h"
+#include <app.h>
+#include <settings.h>
 #include "../logger/logger.h"
-#include "../base/settings.h"
 
 extern QPointer<Settings> settings;
 
@@ -27,12 +26,12 @@ WebSocketManager::~WebSocketManager() {
 
 void WebSocketManager::onAcceptError(QAbstractSocket::SocketError socketError)
 {
-    console("Accept error: " << socketError);
+    qDebug() << "Accept error:" << socketError;
 }
 
 void WebSocketManager::onServerError(QWebSocketProtocol::CloseCode closeCode)
 {
-    console("Server error: " << closeCode);
+    qDebug() << "Server error:" << closeCode;
 }
 
 void WebSocketManager::onNewConnection()

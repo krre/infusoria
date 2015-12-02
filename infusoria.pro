@@ -5,6 +5,8 @@ CONFIG += c++11
 CONFIG += console
 CONFIG -= app_bundle
 
+include(src/common/common.pri)
+
 SOURCES += \
     src/main.cpp \
     src/database/init.cpp \
@@ -12,21 +14,15 @@ SOURCES += \
     src/mind/mind.cpp \
     src/repl/repl.cpp \
     src/logger/logger.cpp \
-    src/base/settings.cpp \
-    src/global/utils.cpp \
     src/base/infucontroller.cpp \
     src/base/jsonrpc.cpp
 
 HEADERS += \
     src/database/init.h \
-    src/global/macro.h \
-    src/global/app.h \
     src/net/websocketmanager.h \
     src/mind/mind.h \
     src/repl/repl.h \
     src/logger/logger.h \
-    src/base/settings.h \
-    src/global/utils.h \
     src/base/infucontroller.h \
     src/base/jsonrpc.h
 

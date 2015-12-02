@@ -1,12 +1,11 @@
 #include "init.h"
-#include "../global/app.h"
-#include "../global/macro.h"
+#include <app.h>
 
 bool Init::create(const QString& filePath)
 {
     QFileInfo checkFile(filePath);
     if (checkFile.exists() && checkFile.isFile()) {
-        console("File is exist");
+        qDebug() << "File is exist";
         return false;
     }
 
@@ -22,7 +21,7 @@ bool Init::create(const QString& filePath)
         initRecords(db);
     }
     QSqlDatabase::removeDatabase(filePath);
-    console("AI unit created successfully");
+    qDebug() << "AI unit created successfully";
     return true;
 }
 
