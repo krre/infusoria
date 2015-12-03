@@ -1,7 +1,7 @@
 #include "logger.h"
+#include <settings.h>
 
-QString Logger::directory;
-QString Logger::name;
+extern QPointer<Settings> settings;
 
 Logger &Logger::instance()
 {
@@ -9,16 +9,11 @@ Logger &Logger::instance()
     return logger;
 }
 
-void Logger::setInfuFile(QFileInfo &fileInfo)
-{
-    name = fileInfo.baseName();
-    directory = fileInfo.dir().path() + "/log-" + name;
-    QDir dir;
-    dir.mkdir(directory);
-}
-
 void Logger::Helper::write() {
-    QString logPath = directory + "/" + name + "-" + QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd") + ".log";
+    QString logDir = settings->value("Path", "log").toString();
+    QDir dir;
+    dir.mkdir(logDir);
+    QString logPath = logDir + "/infu-" + QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd") + ".log";
     QFile data(logPath);
     if (data.open(QFile::WriteOnly | QIODevice::Append)) {
         QTextStream out(&data);

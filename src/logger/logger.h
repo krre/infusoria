@@ -10,7 +10,6 @@ class Logger : public QObject
 
 public:
     static Logger& instance();
-    void setInfuFile(QFileInfo& fileInfo);
 
     class Helper
     {
@@ -27,6 +26,4 @@ public:
 
 private:
     Logger() {}
-    static QString directory;
-    static QString name;
 };
