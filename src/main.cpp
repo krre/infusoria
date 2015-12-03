@@ -8,6 +8,7 @@
 #include "repl/repl.h"
 #include "logger/logger.h"
 #include "base/infucontroller.h"
+#include "net/websocketmanager.h"
 
 QPointer<Settings> settings;
 
@@ -27,6 +28,8 @@ int main(int argc, char *argv[])
 
     QSharedPointer<Repl> repl;
     QSharedPointer<InfuController> infuController = QSharedPointer<InfuController>(new InfuController);
+    QSharedPointer<WebSocketManager> webSocketManager = QSharedPointer<WebSocketManager>(new WebSocketManager);
+    webSocketManager->setInfuController(infuController.data());
 
     QCommandLineParser parser;
     parser.setApplicationDescription(App::name());

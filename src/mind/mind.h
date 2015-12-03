@@ -1,5 +1,4 @@
 #include <QtCore>
-#include "../net/websocketmanager.h"
 
 class Mind : public QObject
 {

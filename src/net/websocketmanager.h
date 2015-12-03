@@ -1,6 +1,7 @@
 #pragma once
 #include <QtCore>
 #include <QtWebSockets>
+#include "../base/infucontroller.h"
 
 QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
@@ -12,6 +13,7 @@ public:
     WebSocketManager();
     ~WebSocketManager();
     quint16 serverPort() { return server->serverPort(); }
+    void setInfuController(InfuController* infuController);
 
 signals:
     void closed();
@@ -27,4 +29,5 @@ private slots:
 private:
     QWebSocketServer* server;
     QList<QWebSocket*> clients;
+    InfuController* infuController;
 };

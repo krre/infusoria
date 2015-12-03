@@ -24,6 +24,11 @@ WebSocketManager::~WebSocketManager() {
     qDeleteAll(clients.begin(), clients.end());
 }
 
+void WebSocketManager::setInfuController(InfuController* infuController)
+{
+    this->infuController = infuController;
+}
+
 void WebSocketManager::onAcceptError(QAbstractSocket::SocketError socketError)
 {
     qDebug() << "Accept error:" << socketError;
@@ -52,8 +57,25 @@ void WebSocketManager::processTextMessage(QString message)
     QWebSocket *client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         LOGGER() << QString("RECEIVE from IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << message;
-        client->sendTextMessage(message);
-        LOGGER() << QString("SEND to IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << message;
+        QByteArray ba;
+        ba.append(message);
+        QJsonDocument jdoc = QJsonDocument::fromJson(ba);
+        QString method = jdoc.object()["method"].toString();
+        if (method == "onlineList") {
+            QHash<QString, Mind*>* infusories = infuController->online();
+            QJsonObject jobj;
+            jobj["id"] = jdoc.object()["id"];
+            QJsonArray jarray = QJsonArray::fromStringList(infusories->keys());
+            jobj["result"] = jarray;
+            QJsonDocument jMessage(jobj);
+            QString result(jMessage.toJson());
+            client->sendTextMessage(result);
+            LOGGER() << QString("SEND to IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << result;
+        } else {
+            client->sendTextMessage(message);
+            LOGGER() << QString("SEND to IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << message;
+        }
+
     }
 }
 
