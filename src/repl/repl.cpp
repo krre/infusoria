@@ -1,12 +1,12 @@
 #include "repl.h"
 
-Repl::Repl(const QString& filePath) : filePath(filePath)
+Repl::Repl()
 {
 
 }
 
 void Repl::run()
 {
-    qDebug() << "REPL run with" << filePath;
+    qDebug() << "REPL";
 }
 
