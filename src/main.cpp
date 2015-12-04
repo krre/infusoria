@@ -11,6 +11,8 @@
 #include "net/websocketmanager.h"
 
 QPointer<Settings> settings;
+QPointer<InfuController> infuController;
+QPointer<WebSocketManager> webSocketManager;
 
 int main(int argc, char *argv[])
 {
@@ -27,9 +29,8 @@ int main(int argc, char *argv[])
     }
 
     QSharedPointer<Repl> repl;
-    QSharedPointer<InfuController> infuController = QSharedPointer<InfuController>(new InfuController);
-    QSharedPointer<WebSocketManager> webSocketManager = QSharedPointer<WebSocketManager>(new WebSocketManager);
-    webSocketManager->setInfuController(infuController.data());
+    infuController = new InfuController;
+    webSocketManager = new WebSocketManager;
 
     QCommandLineParser parser;
     parser.setApplicationDescription(App::name());

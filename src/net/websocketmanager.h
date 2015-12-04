@@ -13,7 +13,6 @@ public:
     WebSocketManager();
     ~WebSocketManager();
     quint16 serverPort() { return server->serverPort(); }
-    void setInfuController(InfuController* infuController);
 
 signals:
     void closed();
