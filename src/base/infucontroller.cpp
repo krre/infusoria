@@ -7,15 +7,15 @@ InfuController::InfuController(QObject *parent) : QObject(parent)
 
 void InfuController::startInfusoria(const QString& filePath)
 {
-    Mind* mind = new Mind(filePath);
-    mind->start();
-    infusories[filePath] = mind;
+    Infusoria* infusoria = new Infusoria(filePath);
+    infusoria->start();
+    infusories[filePath] = infusoria;
 }
 
 void InfuController::stopInfusoria(const QString& filePath)
 {
-    Mind* mind = infusories[filePath];
-    mind->stop();
-    delete mind;
+    Infusoria* infusoria = infusories[filePath];
+    infusoria->stop();
+    delete infusoria;
     infusories.remove(filePath);
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include <QtCore>
-#include "../mind/mind.h"
+#include "../infusoria/infusoria.h"
 
 class InfuController : public QObject
 {
@@ -9,10 +9,10 @@ public:
     explicit InfuController(QObject *parent = 0);
     Q_INVOKABLE void startInfusoria(const QString& filePath);
     Q_INVOKABLE void stopInfusoria(const QString& filePath);
-    QHash<QString, Mind*>* online() { return &infusories; }
+    QHash<QString, Infusoria*>* online() { return &infusories; }
 
 signals:
 
 private:
-    QHash<QString, Mind*> infusories;
+    QHash<QString, Infusoria*> infusories;
 };

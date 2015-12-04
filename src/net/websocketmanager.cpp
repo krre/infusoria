@@ -62,7 +62,7 @@ void WebSocketManager::processTextMessage(QString message)
         QJsonDocument jdoc = QJsonDocument::fromJson(ba);
         QString method = jdoc.object()["method"].toString();
         if (method == "onlineList") {
-            QHash<QString, Mind*>* infusories = infuController->online();
+            QHash<QString, Infusoria*>* infusories = infuController->online();
             QJsonObject jobj;
             jobj["id"] = jdoc.object()["id"];
             QJsonArray jarray = QJsonArray::fromStringList(infusories->keys());

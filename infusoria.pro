@@ -18,7 +18,7 @@ SOURCES += \
     src/main.cpp \
     src/database/init.cpp \
     src/net/websocketmanager.cpp \
-    src/mind/mind.cpp \
+    src/infusoria/infusoria.cpp \
     src/repl/repl.cpp \
     src/logger/logger.cpp \
     src/base/infucontroller.cpp \
@@ -27,7 +27,7 @@ SOURCES += \
 HEADERS += \
     src/database/init.h \
     src/net/websocketmanager.h \
-    src/mind/mind.h \
+    src/infusoria/infusoria.h \
     src/repl/repl.h \
     src/logger/logger.h \
     src/base/infucontroller.h \

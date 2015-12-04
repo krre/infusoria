@@ -1,10 +1,10 @@
 #include <QtCore>
 
-class Mind : public QObject
+class Infusoria : public QObject
 {
     Q_OBJECT
 public:
-    explicit Mind(const QString& filePath);
+    explicit Infusoria(const QString& filePath);
     void start();
     void stop();
 
