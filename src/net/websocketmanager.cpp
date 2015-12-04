@@ -41,7 +41,7 @@ void WebSocketManager::onServerError(QWebSocketProtocol::CloseCode closeCode)
 
 void WebSocketManager::onNewConnection()
 {
-    QWebSocket *socket = server->nextPendingConnection();
+    QWebSocket* socket = server->nextPendingConnection();
 
     connect(socket, &QWebSocket::textMessageReceived, this, &WebSocketManager::processTextMessage);
     connect(socket, &QWebSocket::binaryMessageReceived, this, &WebSocketManager::processBinaryMessage);
@@ -54,7 +54,7 @@ void WebSocketManager::onNewConnection()
 
 void WebSocketManager::processTextMessage(QString message)
 {
-    QWebSocket *client = qobject_cast<QWebSocket*>(sender());
+    QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         LOGGER() << QString("RECEIVE from IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << message;
         QByteArray ba;
@@ -81,7 +81,7 @@ void WebSocketManager::processTextMessage(QString message)
 
 void WebSocketManager::processBinaryMessage(QByteArray message)
 {
-    QWebSocket *client = qobject_cast<QWebSocket *>(sender());
+    QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         client->sendBinaryMessage(message);
     }
@@ -89,7 +89,7 @@ void WebSocketManager::processBinaryMessage(QByteArray message)
 
 void WebSocketManager::socketDisconnected()
 {
-    QWebSocket *client = qobject_cast<QWebSocket *>(sender());
+    QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         clients.removeAll(client);
         client->deleteLater();
