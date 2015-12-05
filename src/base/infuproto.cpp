@@ -11,7 +11,9 @@ InfuProto::InfuProto()
 
 void InfuProto::send(QJsonDocument& message, QWebSocket* client)
 {
-    message.object()["sender"] = "IM";
+    QJsonObject obj = message.object();
+    obj["sender"] = "IM";
+    message.setObject(obj);
     QString textMessage(message.toJson());
     client->sendTextMessage(textMessage);
     LOGGER() << QString("SEND to IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << textMessage;
