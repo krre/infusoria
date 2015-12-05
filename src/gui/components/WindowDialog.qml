@@ -49,9 +49,10 @@ Window {
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
 
-            Button {
+            ButtonBase {
                 text: qsTr("OK")
                 visible: (StandardButton.Ok & standardButtons) === StandardButton.Ok
+                isDefault: activeFocus || activeFocusItem && activeFocusItem.objectName !== "ButtonBase"
                 onClicked: {
                     root.accepted()
                     if (!stayOnScreen) {
@@ -60,7 +61,7 @@ Window {
                 }
             }
 
-            Button {
+            ButtonBase {
                 text: qsTr("Cancel")
                 visible: (StandardButton.Cancel & standardButtons) === StandardButton.Cancel
                 onClicked: {
@@ -69,7 +70,7 @@ Window {
                 }
             }
 
-            Button {
+            ButtonBase {
                 text: qsTr("Close")
                 visible: (StandardButton.Close & standardButtons) === StandardButton.Close
                 onClicked: {

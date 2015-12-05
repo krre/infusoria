@@ -55,4 +55,5 @@ DISTFILES += \
     src/gui/dialog.js \
     src/gui/utils.js \
     src/gui/About.qml \
-    src/gui/NewInfusoria.qml
+    src/gui/NewInfusoria.qml \
+    src/gui/components/ButtonBase.qml

@@ -37,6 +37,7 @@ WindowDialog {
                     id: workspacePath
                     Layout.fillWidth: true
                     text: SETTINGS.value("Path", "workspace")
+                    Component.onCompleted: forceActiveFocus()
                 }
 
                 BrowseButton {
