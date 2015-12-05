@@ -28,6 +28,11 @@ Window {
         colorGroup: SystemPalette.Active
     }
 
+    Action {
+        shortcut: "Esc"
+        onTriggered: root.destroy()
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: indent
