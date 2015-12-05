@@ -1,6 +1,7 @@
 #include "infuproto.h"
 #include "../logger/logger.h"
 #include "infucontroller.h"
+#include "fileoperations.h"
 
 extern QPointer<InfuController> infuController;
 
@@ -16,7 +17,9 @@ void InfuProto::send(QJsonDocument& message, QWebSocket* client)
     message.setObject(obj);
     QString textMessage(message.toJson());
     client->sendTextMessage(textMessage);
-    LOGGER() << QString("SEND to IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << textMessage;
+    LOGGER() << QString("SEND to IP=") + client->peerAddress().toString()
+             << QString("PORT=") + QString::number(client->peerPort()) + ":"
+             << (obj["action"].toString() == "getLog" ? "Log" : textMessage);
 }
 
 void InfuProto::receive(const QString& message, QWebSocket* client)
@@ -32,13 +35,18 @@ void InfuProto::receive(const QString& message, QWebSocket* client)
         if (action == "getInfusories") {
             QHash<QString, Infusoria*>* infusories = infuController->online();
             QJsonObject obj;
-            obj["action"] = "getInfusories";
+            obj["action"] = action;
             QJsonArray array = QJsonArray::fromStringList(infusories->keys());
             obj["result"] = array;
             QJsonDocument sendDoc(obj);
             send(sendDoc, client);
         } else if (action == "getLog") {
-
+            QJsonObject obj;
+            obj["action"] = action;
+            QJsonArray array = QJsonArray::fromStringList(FileOperations::loadList(Logger::Helper().logPath()));
+            obj["result"] = array;
+            QJsonDocument sendDoc(obj);
+            send(sendDoc, client);
         }
     } else if (sender == "infusoria") {
 
