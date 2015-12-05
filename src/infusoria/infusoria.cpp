@@ -1,4 +1,5 @@
 #include "infusoria.h"
+#include "../logger/logger.h"
 
 Infusoria::Infusoria(const QString& filePath) : filePath(filePath)
 {
@@ -6,10 +7,10 @@ Infusoria::Infusoria(const QString& filePath) : filePath(filePath)
 
 void Infusoria::start()
 {
-    qDebug() << "Infusoria started with" << filePath;
+    LOGGER() << "Infusoria started with" << filePath;
 }
 
 void Infusoria::stop()
 {
-    qDebug() << "Infusoria stopped with" << filePath;
+    LOGGER() << "Infusoria stopped with" << filePath;
 }

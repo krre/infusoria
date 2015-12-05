@@ -1,5 +1,6 @@
 #include "logger.h"
 #include <settings.h>
+#include "../base/infuproto.h"
 
 extern QPointer<Settings> settings;
 
@@ -19,11 +20,16 @@ QString Logger::Helper::logPath()
 
 void Logger::Helper::write() {
 
+    QString text;
+    QTextStream ts(&text);
+    ts << QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "\n";
+    ts << buffer.trimmed() << "\n\n";
+    InfuProto::send(text);
+
     QFile data(logPath());
     if (data.open(QFile::WriteOnly | QIODevice::Append)) {
         QTextStream out(&data);
-        out << QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "\n";
-        out << buffer.trimmed() << "\n\n";
+        out << text;
         out.flush();
     }
 }

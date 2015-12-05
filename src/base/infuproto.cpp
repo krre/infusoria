@@ -10,6 +10,19 @@ InfuProto::InfuProto()
 
 }
 
+void InfuProto::send(const QString& message)
+{
+    if (!infuController->aquariums()->count()) return;
+    QJsonObject obj;
+    obj["info"] = "log";
+    obj["value"] = message;
+    QJsonDocument sendDoc(obj);
+
+    for (int i = 0; i < infuController->aquariums()->count(); ++i) {
+        send(sendDoc, infuController->aquariums()->at(i));
+    }
+}
+
 void InfuProto::send(QJsonDocument& message, QWebSocket* client)
 {
     QJsonObject obj = message.object();
@@ -17,14 +30,16 @@ void InfuProto::send(QJsonDocument& message, QWebSocket* client)
     message.setObject(obj);
     QString textMessage(message.toJson());
     client->sendTextMessage(textMessage);
+    /*
     LOGGER() << QString("SEND to IP=") + client->peerAddress().toString()
              << QString("PORT=") + QString::number(client->peerPort()) + ":"
              << (obj["action"].toString() == "getLog" ? "Log" : textMessage);
+             */
 }
 
 void InfuProto::receive(const QString& message, QWebSocket* client)
 {
-    LOGGER() << QString("RECEIVE from IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << message;
+//    LOGGER() << QString("RECEIVE from IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << message;
 
     QByteArray ba;
     ba.append(message);
@@ -41,12 +56,18 @@ void InfuProto::receive(const QString& message, QWebSocket* client)
             QJsonDocument sendDoc(obj);
             send(sendDoc, client);
         } else if (action == "getLog") {
-            QJsonObject obj;
-            obj["action"] = action;
-            QJsonArray array = QJsonArray::fromStringList(FileOperations::loadList(Logger::Helper().logPath()));
-            obj["result"] = array;
-            QJsonDocument sendDoc(obj);
-            send(sendDoc, client);
+            QJsonObject options = receiveDoc.object()["options"].toObject();
+            if (options["enable"].toBool()) {
+                infuController->addAquarium(client);
+                QJsonObject obj;
+                obj["action"] = action;
+                QJsonArray array = QJsonArray::fromStringList(FileOperations::loadList(Logger::Helper().logPath()));
+                obj["result"] = array;
+                QJsonDocument sendDoc(obj);
+                send(sendDoc, client);
+            } else {
+                infuController->removeAquarium(client);
+            }
         }
     } else if (sender == "infusoria") {
 
