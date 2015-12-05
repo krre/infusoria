@@ -14,12 +14,12 @@ void InfuProto::send(QJsonDocument& message, QWebSocket* client)
     message.object()["sender"] = "IM";
     QString textMessage(message.toJson());
     client->sendTextMessage(textMessage);
-    LOGGER() << QString("SEND to IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << textMessage;
+    LOGGER() << QString("SEND to IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << textMessage;
 }
 
 void InfuProto::receive(const QString& message, QWebSocket* client)
 {
-    LOGGER() << QString("RECEIVE from IP=") + client->localAddress().toString() << QString("PORT=") + QString::number(client->localPort()) + ":" << message;
+    LOGGER() << QString("RECEIVE from IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << message;
 
     QByteArray ba;
     ba.append(message);
