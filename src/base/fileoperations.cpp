@@ -1,11 +1,6 @@
 #include "fileoperations.h"
 
-FileOperations::FileOperations()
-{
-
-}
-
-void FileOperations::saveInfuList(const QString& filePath, const QStringList& list)
+void FileOperations::saveList(const QString& filePath, const QStringList& list)
 {
     QFile file(filePath);
     if (file.open(QFile::WriteOnly | QFile::Text)) {
@@ -19,7 +14,7 @@ void FileOperations::saveInfuList(const QString& filePath, const QStringList& li
     file.close();
 }
 
-QStringList FileOperations::loadInfuList(const QString& filePath)
+QStringList FileOperations::loadList(const QString& filePath)
 {
     QStringList list;
     QFile file(filePath);

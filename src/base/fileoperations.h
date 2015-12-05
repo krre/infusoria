@@ -5,7 +5,7 @@ class FileOperations : public QObject
 {
     Q_OBJECT
 public:
-    FileOperations();
-    Q_INVOKABLE void saveInfuList(const QString& filePath, const QStringList &list);
-    Q_INVOKABLE QStringList loadInfuList(const QString& filePath);
+    FileOperations() {}
+    Q_INVOKABLE void saveList(const QString& filePath, const QStringList &list);
+    Q_INVOKABLE QStringList loadList(const QString& filePath);
 };
