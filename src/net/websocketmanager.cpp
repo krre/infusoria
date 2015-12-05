@@ -14,7 +14,7 @@ WebSocketManager::WebSocketManager()
     connect(server, &QWebSocketServer::newConnection, this, &WebSocketManager::onNewConnection);
     connect(server, &QWebSocketServer::closed, this, &WebSocketManager::closed);
     quint16 port = settings->value("Network", "port").toUInt();
-    server->listen(QHostAddress::Any, port);
+    server->listen(QHostAddress::AnyIPv4, port);
     QString message = QString("%1 started on port %2").arg(App::name()).arg(server->serverPort());
     qDebug().noquote() << message;
     LOGGER() << message;
