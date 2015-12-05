@@ -22,7 +22,8 @@ SOURCES += \
     src/repl/repl.cpp \
     src/logger/logger.cpp \
     src/base/infucontroller.cpp \
-    src/base/infuproto.cpp
+    src/base/infuproto.cpp \
+    src/base/fileoperations.cpp
 
 HEADERS += \
     src/database/init.h \
@@ -31,7 +32,8 @@ HEADERS += \
     src/repl/repl.h \
     src/logger/logger.h \
     src/base/infucontroller.h \
-    src/base/infuproto.h
+    src/base/infuproto.h \
+    src/base/fileoperations.h
 
 RESOURCES += \
     src/qml.qrc

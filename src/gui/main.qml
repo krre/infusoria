@@ -67,7 +67,7 @@ ApplicationWindow {
             }
         }
 
-        var infuList = UTILS.loadInfuList(infuListPath)
+        var infuList = FILE_OPERATIONS.loadInfuList(infuListPath)
         if (infuList) {
             infuModel.addInfuList(infuList)
         }
@@ -84,7 +84,7 @@ ApplicationWindow {
         for (var i = 0; i < infuModel.count; i++) {
             list.push(infuModel.get(i).path)
         }
-        UTILS.saveInfuList(infuListPath, list)
+        FILE_OPERATIONS.saveInfuList(infuListPath, list)
     }
 
     ListModel {

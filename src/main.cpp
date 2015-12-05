@@ -8,6 +8,7 @@
 #include "repl/repl.h"
 #include "logger/logger.h"
 #include "base/infucontroller.h"
+#include "base/fileoperations.h"
 #include "net/websocketmanager.h"
 
 QPointer<Settings> settings;
@@ -50,6 +51,7 @@ int main(int argc, char *argv[])
             App app;
             Utils utils;
             Init init;
+            FileOperations fileOperations;
 
             QQmlApplicationEngine engine;
             engine.rootContext()->setContextProperty("APP", &app);
@@ -57,6 +59,7 @@ int main(int argc, char *argv[])
             engine.rootContext()->setContextProperty("INIT", &init);
             engine.rootContext()->setContextProperty("SETTINGS", settings);
             engine.rootContext()->setContextProperty("INFU_CONTROLLER", infuController.data());
+            engine.rootContext()->setContextProperty("FILE_OPERATIONS", &fileOperations);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 
             return appication.exec();
