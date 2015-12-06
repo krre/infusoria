@@ -27,6 +27,9 @@ WindowDialog {
                 })
             } else {
                 INIT.create(filePath)
+                if (openAfterCreating.checked) {
+                    infuModel.append({ name: name.text, state: "", path: filePath })
+                }
             }
         }
     }

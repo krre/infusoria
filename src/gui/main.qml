@@ -8,6 +8,7 @@ import "dialog.js" as Dialog
 
 ApplicationWindow {
     property string infuListPath: APP.applicationDirPath + "/infu.txt"
+    property alias infuModel: infuModel
     id: mainRoot
     title: APP.name
     width: 800
