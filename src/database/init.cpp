@@ -9,8 +9,6 @@ bool Init::create(const QString& filePath, const QVariantMap& individuality)
         return false;
     }
 
-    qDebug() << individuality;
-
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
         db.setDatabaseName(filePath);
@@ -21,6 +19,7 @@ bool Init::create(const QString& filePath, const QVariantMap& individuality)
         }
         initTables(db);
         initRecords(db);
+        addIndividuality(db, individuality);
     }
     QSqlDatabase::removeDatabase(filePath);
     qDebug() << QString("AI unit created successfully in %1").arg(filePath);
@@ -30,10 +29,8 @@ bool Init::create(const QString& filePath, const QVariantMap& individuality)
 void Init::initTables(const QSqlDatabase& db)
 {
     QSqlQuery query(db);
-    query.exec("CREATE TABLE Defs("
-               "name,"
-               "value"
-               ")");
+    query.exec("CREATE TABLE Defs(name, value)");
+    query.exec("CREATE TABLE Individuality(name, value)");
 }
 
 void Init::initRecords(const QSqlDatabase& db)
@@ -47,5 +44,26 @@ void Init::initRecords(const QSqlDatabase& db)
     if (!result) {
         qDebug("Error occurred insert record");
         qDebug("%s", qPrintable(query.lastError().text()));
+    }
+}
+
+void Init::addIndividuality(const QSqlDatabase& db, const QVariantMap& individuality)
+{
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO Individuality (name, value) "
+                  "VALUES (:name, :value)");
+
+    QMapIterator<QString, QVariant> i(individuality);
+    while (i.hasNext()) {
+
+        i.next();
+        query.bindValue(":name", i.key());
+        query.bindValue(":value",  i.value());
+
+        bool result = query.exec();
+        if (!result) {
+            qDebug("Error occurred insert record");
+            qDebug("%s", qPrintable(query.lastError().text()));
+        }
     }
 }

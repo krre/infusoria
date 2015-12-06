@@ -12,4 +12,5 @@ public:
 private:
     static void initTables(const QSqlDatabase& db);
     static void initRecords(const QSqlDatabase& db);
+    static void addIndividuality(const QSqlDatabase& db, const QVariantMap& individuality);
 };
