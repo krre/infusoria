@@ -56,4 +56,5 @@ DISTFILES += \
     src/gui/utils.js \
     src/gui/About.qml \
     src/gui/NewInfusoria.qml \
-    src/gui/components/ButtonBase.qml
+    src/gui/components/ButtonBase.qml \
+    src/gui/components/SliderIndividuality.qml

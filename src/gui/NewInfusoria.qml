@@ -9,7 +9,7 @@ WindowDialog {
     id: root
     title: qsTr("New Infusoria")
     width: 400
-    height: 100
+    height: 300
 
     onAccepted: {
         if (!name.text) {
@@ -73,10 +73,56 @@ WindowDialog {
 
         CheckBox {
             id: openAfterCreating
+            Layout.columnSpan: 2
             text: qsTr("Add after creating")
-            Layout.column: 1
-            Layout.row: 2
             checked: true
+        }
+
+        GroupBox {
+            title: qsTr("Individuality")
+            Layout.columnSpan: 2
+            Layout.fillWidth: true
+
+            GridLayout {
+                width: parent.width
+                columns: 3
+
+                Label {
+                    text: qsTr("Silent")
+                }
+
+                SliderIndividuality {
+                    Layout.fillWidth: true
+                }
+
+                Label {
+                    text: qsTr("Talkative")
+                }
+
+                Label {
+                    text: qsTr("Lazy")
+                }
+
+                SliderIndividuality {
+                    Layout.fillWidth: true
+                }
+
+                Label {
+                    text: qsTr("Hardworking")
+                }
+
+                Label {
+                    text: qsTr("Thinker")
+                }
+
+                SliderIndividuality {
+                    Layout.fillWidth: true
+                }
+
+                Label {
+                    text: qsTr("Working")
+                }
+            }
         }
     }
 }
