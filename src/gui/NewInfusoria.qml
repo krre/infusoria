@@ -16,18 +16,17 @@ WindowDialog {
             stayOnScreen = true
             Dialog.errorMessage(qsTr("Name is empty"))
         } else {
-            var filePath = directory.text + "/" + name.text + ".infu"
+            var filePath = directory.text + "/" + file.text
             if (UTILS.isFileExists(filePath)) {
                 stayOnScreen = true
                 var warningDialog = Dialog.warningMessage(qsTr("File is exists. Overwrite?"))
                 warningDialog.yes.connect(function() {
                     UTILS.removeFile(filePath)
-                    INIT.create(filePath, getIndividuality())
+                    INIT.create(name.text, filePath, getIndividuality())
                     root.destroy()
                 })
             } else {
-
-                INIT.create(filePath, getIndividuality())
+                INIT.create(name.text, filePath, getIndividuality())
                 if (openAfterCreating.checked) {
                     infuModel.append({ name: name.text, state: "", path: filePath })
                 }
@@ -54,7 +53,17 @@ WindowDialog {
         TextField {
             id: name
             Layout.fillWidth: true
+            onTextChanged: file.text = name.text.trim().replace(/ /g, '-').toLowerCase() + ".infu"
             Component.onCompleted: forceActiveFocus()
+        }
+
+        Label {
+            text: qsTr("File:")
+        }
+
+        TextField {
+            id: file
+            Layout.fillWidth: true
         }
 
         Label {
