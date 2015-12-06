@@ -22,16 +22,25 @@ WindowDialog {
                 var warningDialog = Dialog.warningMessage(qsTr("File is exists. Overwrite?"))
                 warningDialog.yes.connect(function() {
                     UTILS.removeFile(filePath)
-                    INIT.create(filePath)
+                    INIT.create(filePath, getIndividuality())
                     root.destroy()
                 })
             } else {
-                INIT.create(filePath)
+
+                INIT.create(filePath, getIndividuality())
                 if (openAfterCreating.checked) {
                     infuModel.append({ name: name.text, state: "", path: filePath })
                 }
             }
         }
+    }
+
+    function getIndividuality() {
+        var individuality = {}
+        individuality.sociability = sociability.value
+        individuality.zeal = zeal.value
+        individuality.activity = activity.value
+        return individuality
     }
 
     GridLayout {
@@ -92,6 +101,7 @@ WindowDialog {
                 }
 
                 SliderIndividuality {
+                    id: sociability
                     Layout.fillWidth: true
                 }
 
@@ -104,6 +114,7 @@ WindowDialog {
                 }
 
                 SliderIndividuality {
+                    id: zeal
                     Layout.fillWidth: true
                 }
 
@@ -116,6 +127,7 @@ WindowDialog {
                 }
 
                 SliderIndividuality {
+                    id: activity
                     Layout.fillWidth: true
                 }
 

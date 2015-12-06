@@ -1,13 +1,15 @@
 #include "init.h"
 #include <app.h>
 
-bool Init::create(const QString& filePath)
+bool Init::create(const QString& filePath, const QVariantMap& individuality)
 {
     QFileInfo checkFile(filePath);
     if (checkFile.exists() && checkFile.isFile()) {
         qDebug() << "File is exist";
         return false;
     }
+
+    qDebug() << individuality;
 
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
@@ -21,7 +23,7 @@ bool Init::create(const QString& filePath)
         initRecords(db);
     }
     QSqlDatabase::removeDatabase(filePath);
-    qDebug() << "AI unit created successfully";
+    qDebug() << QString("AI unit created successfully in %1").arg(filePath);
     return true;
 }
 
