@@ -1,7 +1,7 @@
 #include "init.h"
 #include <app.h>
 
-bool Init::create(const QString& filePath, const QVariantMap& individuality)
+bool Init::create(const QString& name, const QString& filePath, const QVariantMap& individuality)
 {
     QFileInfo checkFile(filePath);
     if (checkFile.exists() && checkFile.isFile()) {
@@ -18,7 +18,7 @@ bool Init::create(const QString& filePath, const QVariantMap& individuality)
              return false;
         }
         initTables(db);
-        initRecords(db);
+        initRecords(db, name);
         addIndividuality(db, individuality);
     }
     QSqlDatabase::removeDatabase(filePath);
@@ -33,14 +33,42 @@ void Init::initTables(const QSqlDatabase& db)
     query.exec("CREATE TABLE Individuality(name, value)");
 }
 
-void Init::initRecords(const QSqlDatabase& db)
+void Init::initRecords(const QSqlDatabase& db, const QString& name)
 {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Defs (name, value) "
                   "VALUES (:name, :value)");
+    // Verison
     query.bindValue(":name", "version");
     query.bindValue(":value", App::version());
     bool result = query.exec();
+    if (!result) {
+        qDebug("Error occurred insert record");
+        qDebug("%s", qPrintable(query.lastError().text()));
+    }
+
+    // Name
+    query.bindValue(":name", "name");
+    query.bindValue(":value", name);
+    result = query.exec();
+    if (!result) {
+        qDebug("Error occurred insert record");
+        qDebug("%s", qPrintable(query.lastError().text()));
+    }
+
+    // Uuid
+    query.bindValue(":name", "uuid");
+    query.bindValue(":value", QUuid::createUuid().toString());
+    result = query.exec();
+    if (!result) {
+        qDebug("Error occurred insert record");
+        qDebug("%s", qPrintable(query.lastError().text()));
+    }
+
+    // Birthday
+    query.bindValue(":name", "birthday");
+    query.bindValue(":value", QDateTime::currentMSecsSinceEpoch());
+    result = query.exec();
     if (!result) {
         qDebug("Error occurred insert record");
         qDebug("%s", qPrintable(query.lastError().text()));
