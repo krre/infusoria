@@ -95,3 +95,23 @@ void Init::addIndividuality(const QSqlDatabase& db, const QVariantMap& individua
         }
     }
 }
+
+QString Init::name(const QString &filePath)
+{
+    QString name;
+    {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
+        db.setDatabaseName(filePath);
+        if (!db.open()) {
+             qDebug("Error occurred opening the database");
+             qDebug("%s", qPrintable(db.lastError().text()));
+             return "";
+        }
+        QSqlQuery query(QString("SELECT Value FROM Defs WHERE name LIKE 'name'"), db);
+        while (query.next()) {
+            name = query.value(0).toString();
+        }
+    }
+    QSqlDatabase::removeDatabase(filePath);
+    return name;
+}
