@@ -15,6 +15,7 @@ WindowDialog {
     height: 300
 
     Component.onCompleted: {
+        birthday.text = new Date(Number(INIT.birthday(path.text))).toLocaleString()
         var map = INIT.individuality(path.text)
         if (map) {
             sociability.text = Number(map.sociability).toFixed(4)
@@ -46,11 +47,17 @@ WindowDialog {
             text: qsTr("Path:")
         }
 
-        TextField {
+        Label {
             id: path
-            Layout.fillWidth: true
             text: path
-            readOnly: true
+        }
+
+        Label {
+            text: qsTr("Birthday:")
+        }
+
+        Label {
+            id: birthday
         }
 
         GroupBox {

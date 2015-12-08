@@ -159,3 +159,23 @@ QString Init::name(const QString &filePath)
     QSqlDatabase::removeDatabase(filePath);
     return name;
 }
+
+QString Init::birthday(const QString& filePath)
+{
+    QString birthday;
+    {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
+        db.setDatabaseName(filePath);
+        if (!db.open()) {
+             qDebug("Error occurred opening the database");
+             qDebug("%s", qPrintable(db.lastError().text()));
+             return "";
+        }
+        QSqlQuery query(QString("SELECT value FROM Defs WHERE name LIKE 'birthday'"), db);
+        while (query.next()) {
+            birthday = query.value(0).toString();
+        }
+    }
+    QSqlDatabase::removeDatabase(filePath);
+    return birthday;
+}
