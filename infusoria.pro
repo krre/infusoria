@@ -57,4 +57,5 @@ DISTFILES += \
     src/gui/About.qml \
     src/gui/NewInfusoria.qml \
     src/gui/components/ButtonBase.qml \
-    src/gui/components/SliderIndividuality.qml
+    src/gui/components/SliderIndividuality.qml \
+    src/gui/Editor.qml

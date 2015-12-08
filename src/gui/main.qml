@@ -124,6 +124,15 @@ ApplicationWindow {
             model: infuModel
             selectionMode: SelectionMode.ExtendedSelection
 
+            onDoubleClicked: openEditor()
+
+            function openEditor() {
+                Utils.createDynamicObject(mainRoot, "qrc:/gui/Editor.qml", {
+                                              name: infuModel.get(currentRow).name,
+                                              path: infuModel.get(currentRow).path
+                                          })
+            }
+
             TableViewColumn {
                 title: qsTr("Name")
                 role: "name"
@@ -176,6 +185,12 @@ ApplicationWindow {
                         INFU_CONTROLLER.stopInfusoria(infuModel.get(rowIndex).path)
                     })
                 }
+            }
+
+            Button {
+                text: qsTr("Edit")
+                enabled: infuTable.currentRow !== -1
+                onClicked: infuTable.openEditor()
             }
 
             Button {

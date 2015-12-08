@@ -18,5 +18,6 @@
         <file>gui/NewInfusoria.qml</file>
         <file>gui/components/ButtonBase.qml</file>
         <file>gui/components/SliderIndividuality.qml</file>
+        <file>gui/Editor.qml</file>
     </qresource>
 </RCC>
