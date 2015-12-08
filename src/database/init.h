@@ -10,6 +10,7 @@ public:
     Q_INVOKABLE static bool create(const QString& name, const QString& filePath, const QVariantMap& individuality);
     Q_INVOKABLE static QString name(const QString& filePath);
     Q_INVOKABLE static void setName(const QString& name, const QString& filePath);
+    Q_INVOKABLE static QVariantMap individuality(const QString& filePath);
 
 private:
     static void initTables(const QSqlDatabase& db);

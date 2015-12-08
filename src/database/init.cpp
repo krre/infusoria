@@ -50,6 +50,26 @@ void Init::setName(const QString& name, const QString& filePath)
     QSqlDatabase::removeDatabase(filePath);
 }
 
+QVariantMap Init::individuality(const QString& filePath)
+{
+    QVariantMap map;
+    {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
+        db.setDatabaseName(filePath);
+        if (!db.open()) {
+             qDebug("Error occurred opening the database");
+             qDebug("%s", qPrintable(db.lastError().text()));
+        }
+        QSqlQuery query(QString("SELECT * FROM Individuality"), db);
+        while (query.next()) {
+            map[query.value(0).toString()] = query.value(1).toString();
+        }
+    }
+    QSqlDatabase::removeDatabase(filePath);
+
+    return map;
+}
+
 void Init::initTables(const QSqlDatabase& db)
 {
     QSqlQuery query(db);
@@ -131,7 +151,7 @@ QString Init::name(const QString &filePath)
              qDebug("%s", qPrintable(db.lastError().text()));
              return "";
         }
-        QSqlQuery query(QString("SELECT Value FROM Defs WHERE name LIKE 'name'"), db);
+        QSqlQuery query(QString("SELECT value FROM Defs WHERE name LIKE 'name'"), db);
         while (query.next()) {
             name = query.value(0).toString();
         }

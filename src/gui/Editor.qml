@@ -14,6 +14,15 @@ WindowDialog {
     width: 400
     height: 300
 
+    Component.onCompleted: {
+        var map = INIT.individuality(path.text)
+        if (map) {
+            sociability.text = Number(map.sociability).toFixed(4)
+            zeal.text = Number(map.zeal).toFixed(4)
+            activity.text = Number(map.activity).toFixed(4)
+        }
+    }
+
     onAccepted: {
         INIT.setName(name.text, path.text)
         mainRoot.infuModel.setProperty(row, "name", name.text)
@@ -42,6 +51,55 @@ WindowDialog {
             Layout.fillWidth: true
             text: path
             readOnly: true
+        }
+
+        GroupBox {
+            title: qsTr("Individuality")
+            Layout.columnSpan: 2
+            Layout.fillWidth: true
+
+            GridLayout {
+                columns: 3
+
+                Label {
+                    text: qsTr("Sociability:")
+                }
+
+                TextField {
+                    id: sociability
+                    readOnly: true
+                }
+
+                Label {
+                    text: (sociability.text) < 0 ? qsTr("Silent") : qsTr("Talkative")
+                }
+
+                Label {
+                    text: qsTr("Zeal:")
+                }
+
+                TextField {
+                    id: zeal
+                    readOnly: true
+                }
+
+                Label {
+                    text: parseFloat(zeal.text) < 0 ? qsTr("Lazy") : qsTr("Hardworking")
+                }
+
+                Label {
+                    text: qsTr("Activity:")
+                }
+
+                TextField {
+                    id: activity
+                    readOnly: true
+                }
+
+                Label {
+                    text: parseFloat(activity.text) < 0 ? qsTr("Thinker") : qsTr("Working")
+                }
+            }
         }
     }
 }
