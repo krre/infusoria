@@ -8,13 +8,15 @@ import "utils.js" as Utils
 WindowDialog {
     property alias name: name.text
     property alias path: path.text
+    property int row
     id: root
     title: qsTr("Edit Infusoria")
     width: 400
     height: 300
 
     onAccepted: {
-
+        INIT.setName(name.text, path.text)
+        mainRoot.infuModel.setProperty(row, "name", name.text)
     }
 
     GridLayout {

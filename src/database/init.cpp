@@ -26,6 +26,30 @@ bool Init::create(const QString& name, const QString& filePath, const QVariantMa
     return true;
 }
 
+void Init::setName(const QString& name, const QString& filePath)
+{
+    {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
+        db.setDatabaseName(filePath);
+        if (!db.open()) {
+             qDebug("Error occurred opening the database");
+             qDebug("%s", qPrintable(db.lastError().text()));
+        }
+
+        QSqlQuery query(db);
+        query.prepare("UPDATE Defs SET value = :value WHERE name = :name");
+        query.bindValue(":name", "name");
+        query.bindValue(":value", name);
+
+        bool result = query.exec();
+        if (!result) {
+            qDebug("Error occurred update record");
+            qDebug("%s", qPrintable(query.lastError().text()));
+        }
+    }
+    QSqlDatabase::removeDatabase(filePath);
+}
+
 void Init::initTables(const QSqlDatabase& db)
 {
     QSqlQuery query(db);
