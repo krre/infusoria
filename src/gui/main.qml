@@ -105,7 +105,8 @@ ApplicationWindow {
                         }
                     }
                     if (!isAdded) {
-                        infuModel.append({ name: name, state: "", path: path })
+                        var uuid = INIT.uuid(path)
+                        infuModel.append({ name: name, state: "", path: path, uuid: uuid })
                     }
                 }
             }
@@ -183,7 +184,7 @@ ApplicationWindow {
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", "")
-                        INFU_CONTROLLER.stopInfusoria(infuModel.get(rowIndex).path)
+                        INFU_CONTROLLER.stopInfusoria(infuModel.get(rowIndex).uuid)
                     })
                 }
             }

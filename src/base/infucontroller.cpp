@@ -9,13 +9,13 @@ void InfuController::startInfusoria(const QString& filePath)
 {
     Infusoria* infusoria = new Infusoria(filePath);
     infusoria->start();
-    infusories[filePath] = infusoria;
+    infusories[infusoria->uuid()] = infusoria;
 }
 
-void InfuController::stopInfusoria(const QString& filePath)
+void InfuController::stopInfusoria(const QString& uuid)
 {
-    Infusoria* infusoria = infusories[filePath];
+    Infusoria* infusoria = infusories[uuid];
     infusoria->stop();
     delete infusoria;
-    infusories.remove(filePath);
+    infusories.remove(uuid);
 }

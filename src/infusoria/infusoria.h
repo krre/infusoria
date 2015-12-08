@@ -7,7 +7,7 @@ public:
     explicit Infusoria(const QString& filePath);
     void start();
     void stop();
-    QUuid uuid() { return m_uuid; }
+    QString uuid() { return m_uuid; }
     QString name() { return m_name; }
 
 signals:

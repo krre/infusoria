@@ -9,7 +9,7 @@ class InfuController : public QObject
 public:
     explicit InfuController(QObject *parent = 0);
     Q_INVOKABLE void startInfusoria(const QString& filePath);
-    Q_INVOKABLE void stopInfusoria(const QString& filePath);
+    Q_INVOKABLE void stopInfusoria(const QString& uuid);
     QHash<QString, Infusoria*>* online() { return &infusories; }
     void addAquarium(QWebSocket* aquarium) { m_aquariums.append(aquarium); }
     void removeAquarium(QWebSocket* aquarium) { m_aquariums.removeOne(aquarium); }
