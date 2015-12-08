@@ -160,6 +160,26 @@ QString Init::name(const QString &filePath)
     return name;
 }
 
+QString Init::uuid(const QString &filePath)
+{
+    QString uuid;
+    {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
+        db.setDatabaseName(filePath);
+        if (!db.open()) {
+             qDebug("Error occurred opening the database");
+             qDebug("%s", qPrintable(db.lastError().text()));
+             return "";
+        }
+        QSqlQuery query(QString("SELECT value FROM Defs WHERE name LIKE 'uuid'"), db);
+        while (query.next()) {
+            uuid = query.value(0).toString();
+        }
+    }
+    QSqlDatabase::removeDatabase(filePath);
+    return uuid;
+}
+
 QString Init::birthday(const QString& filePath)
 {
     QString birthday;
