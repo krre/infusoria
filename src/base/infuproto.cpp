@@ -78,6 +78,23 @@ void InfuProto::receive(const QString& message, QWebSocket* client)
             } else {
                 infuController->removeAquarium(client);
             }
+        } else if (action == "getInfusoria") {
+            QJsonObject options = receiveDoc.object()["options"].toObject();
+            QString uuid = options["uuid"].toString();
+            QHash<QString, Infusoria*>* infusories = infuController->online();
+            Infusoria* infusoria = infusories->operator [](uuid);
+
+            QJsonObject obj;
+            obj["action"] = action;
+            QJsonObject objInfo;
+            objInfo["name"] = infusoria->name();
+            objInfo["uuid"] = uuid;
+            objInfo["birthday"] = infusoria->birthday();
+            objInfo["individuality"] = QJsonObject::fromVariantMap(infusoria->individuality());
+            obj["result"] = objInfo;
+
+            QJsonDocument sendDoc(obj);
+            send(sendDoc, client);
         }
     } else if (sender == "infusoria") {
 

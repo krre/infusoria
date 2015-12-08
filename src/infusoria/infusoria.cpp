@@ -10,6 +10,8 @@ void Infusoria::start()
 {
     m_name = Init::name(filePath);
     m_uuid = Init::uuid(filePath);
+    m_birthday = Init::birthday(filePath);
+    m_individuality = Init::individuality(filePath);
 
     LOGGER() << "Infusoria started with" << filePath;
 }
