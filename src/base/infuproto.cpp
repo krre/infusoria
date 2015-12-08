@@ -51,7 +51,17 @@ void InfuProto::receive(const QString& message, QWebSocket* client)
             QHash<QString, Infusoria*>* infusories = infuController->online();
             QJsonObject obj;
             obj["action"] = action;
-            QJsonArray array = QJsonArray::fromStringList(infusories->keys());
+            QJsonArray array;
+
+            QHashIterator<QString, Infusoria*> i(*infusories);
+            while (i.hasNext()) {
+                i.next();
+                QJsonObject infu;
+                infu["uuid"] = i.value()->uuid();
+                infu["name"] = i.value()->name();
+                array << infu;
+            }
+
             obj["result"] = array;
             QJsonDocument sendDoc(obj);
             send(sendDoc, client);
