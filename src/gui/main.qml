@@ -115,7 +115,8 @@ ApplicationWindow {
 
     RowLayout {
         anchors.fill: parent
-        spacing: 0
+        anchors.margins: 7
+        spacing: 7
 
         TableView {
             id: infuTable
@@ -153,7 +154,6 @@ ApplicationWindow {
 
         ColumnLayout {
             Layout.alignment: Qt.AlignTop
-            Layout.margins: 7
 
             Button {
                 text: qsTr("Add")
