@@ -95,6 +95,11 @@ void InfuProto::receive(const QString& message, QWebSocket* client)
 
             QJsonDocument sendDoc(obj);
             send(sendDoc, client);
+        } else if (action == "message") {
+            QJsonObject options = receiveDoc.object()["options"].toObject();
+            QString message = "MESSAGE from Aquarium: " + options["message"].toString();
+            qDebug() << message;
+            LOGGER() << message;
         }
     } else if (sender == "infusoria") {
 
