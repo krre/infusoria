@@ -1,12 +1,11 @@
 #include <QtCore>
 
-class Infusoria : public QObject
+class Infusoria : public QThread
 {
     Q_OBJECT
 public:
-    explicit Infusoria(const QString& filePath);
-    void start();
-    void stop();
+    void run() override;
+    void setFilePath(const QString& filePath);
     QString uuid() { return m_uuid; }
     QString name() { return m_name; }
     QString birthday() { return m_birthday; }

@@ -2,21 +2,17 @@
 #include "../logger/logger.h"
 #include "../database/init.h"
 
-Infusoria::Infusoria(const QString& filePath) : filePath(filePath)
+void Infusoria::run()
 {
+    LOGGER() << "Infusoria started with" << filePath;
+    exec();
+    LOGGER() << "Infusoria stopped with" << filePath;
 }
 
-void Infusoria::start()
-{
+void Infusoria::setFilePath(const QString& filePath) {
+    this->filePath = filePath;
     m_name = Init::name(filePath);
     m_uuid = Init::uuid(filePath);
     m_birthday = Init::birthday(filePath);
     m_individuality = Init::individuality(filePath);
-
-    LOGGER() << "Infusoria started with" << filePath;
-}
-
-void Infusoria::stop()
-{
-    LOGGER() << "Infusoria stopped with" << filePath;
 }
