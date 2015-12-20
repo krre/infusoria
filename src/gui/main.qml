@@ -115,7 +115,6 @@ ApplicationWindow {
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: 7
         spacing: 7
 
         TableView {
@@ -156,6 +155,8 @@ ApplicationWindow {
             property bool inverse: false // for force updating start and stop buttons
             id: buttons
             Layout.alignment: Qt.AlignTop
+            Layout.rightMargin: 7
+            Layout.topMargin: 7
 
             Button {
                 text: qsTr("Add")
