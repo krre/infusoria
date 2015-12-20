@@ -10,7 +10,7 @@ ApplicationWindow {
     property string infuListPath: APP.applicationDirPath + "/infu.txt"
     property alias infuModel: infuModel
     id: mainRoot
-    title: APP.name
+    title: "Infusoria Manager"
     width: 800
     height: 600
     visible: true
@@ -46,7 +46,7 @@ ApplicationWindow {
             title: qsTr("Help")
 
             MenuItem {
-                text: qsTr(String("About %1").arg(APP.name))
+                text: qsTr("About Infusoria Manager...")
                 onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/gui/About.qml")
             }
         }

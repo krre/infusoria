@@ -18,7 +18,7 @@ QPointer<WebSocketManager> webSocketManager;
 int main(int argc, char *argv[])
 {
     QApplication appication(argc, argv);
-    appication.setApplicationName(App::name());
+    appication.setApplicationName("Infusoria Manager");
     appication.setApplicationVersion(App::version());
 
     QString filePath = qApp->applicationDirPath() + "/infusoria.ini";
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     webSocketManager = new WebSocketManager;
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(App::name());
+    parser.setApplicationDescription("Infusoria Manager");
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOptions({

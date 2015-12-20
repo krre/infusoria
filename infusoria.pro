@@ -8,9 +8,7 @@ CONFIG -= app_bundle
 DEFINES += \
     "MAJOR=0" \
     "MINOR=1" \
-    "PATCH=0" \
-    "NAME=\\\"Infusoria\\\"" \
-    "NAME2=\\\"Manager\\\""
+    "PATCH=0"
 
 include(src/common/common.pri)
 

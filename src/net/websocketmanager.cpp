@@ -15,7 +15,7 @@ WebSocketManager::WebSocketManager()
     connect(server, &QWebSocketServer::closed, this, &WebSocketManager::closed);
     quint16 port = settings->value("Network", "port").toUInt();
     server->listen(QHostAddress::AnyIPv4, port);
-    QString message = QString("%1 started on port %2").arg(App::name()).arg(server->serverPort());
+    QString message = QString("%1 started on port %2").arg("Infusoria Manager").arg(server->serverPort());
     qDebug().noquote() << message;
     LOGGER() << message;
 }

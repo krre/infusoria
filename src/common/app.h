@@ -5,7 +5,6 @@ class App : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString version READ version CONSTANT)
-    Q_PROPERTY(QString name READ name CONSTANT)
     Q_PROPERTY(unsigned int major READ major CONSTANT)
     Q_PROPERTY(unsigned int minor READ minor CONSTANT)
     Q_PROPERTY(unsigned int patch READ patch CONSTANT)
@@ -18,11 +17,6 @@ public:
     static unsigned int minor() { return MINOR; }
     static unsigned int patch() { return PATCH; }
     static QString version() { return QString("%1.%2.%3").arg(MAJOR).arg(MINOR).arg(PATCH); }
-#ifdef NAME2
-    static QString name() { return QString("%1 %2").arg(NAME).arg(NAME2); }
-#else
-    static QString name() { return NAME; }
-#endif
     static QString buildDate() { return QString(__DATE__); }
 
 private:
