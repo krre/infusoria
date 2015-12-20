@@ -15,6 +15,7 @@ WindowDialog {
         if (!name.text) {
             stayOnScreen = true
             Dialog.errorMessage(qsTr("Name is empty"))
+            name.forceActiveFocus()
         } else {
             var filePath = directory.text + "/" + file.text
             if (UTILS.isFileExists(filePath)) {
