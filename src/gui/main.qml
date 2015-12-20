@@ -204,15 +204,18 @@ ApplicationWindow {
                 text: qsTr("Remove")
                 enabled: infuTable.currentRow !== -1 && infuModel.get(infuTable.currentRow).state === ""
                 onClicked: {
-                    var list = []
-                    infuTable.selection.forEach( function(rowIndex) {
-                        list.push(rowIndex)
+                    var warningDialog = Dialog.warningMessage(qsTr("Are you sure?"))
+                    warningDialog.yes.connect(function() {
+                        var list = []
+                        infuTable.selection.forEach( function(rowIndex) {
+                            list.push(rowIndex)
+                        })
+                        // remove in reverse order
+                        for (var i = list.length - 1; i >= 0; i--) {
+                            infuModel.remove(list[i])
+                        }
+                        infuTable.selection.clear()
                     })
-                    // remove in reverse order
-                    for (var i = list.length - 1; i >= 0; i--) {
-                        infuModel.remove(list[i])
-                    }
-                    infuTable.selection.clear()
                 }
             }
 
@@ -220,11 +223,14 @@ ApplicationWindow {
                 text: qsTr("Clear")
                 enabled: infuTable.rowCount > 0
                 onClicked: {
-                    for (var i = infuModel.count - 1; i >= 0; i--) {
-                        if (!infuModel.get(i).state) {
-                            infuModel.remove(i)
+                    var warningDialog = Dialog.warningMessage(qsTr("Are you sure?"))
+                    warningDialog.yes.connect(function() {
+                        for (var i = infuModel.count - 1; i >= 0; i--) {
+                            if (!infuModel.get(i).state) {
+                                infuModel.remove(i)
+                            }
                         }
-                    }
+                    })
                 }
             }
         }
