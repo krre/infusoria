@@ -153,6 +153,8 @@ ApplicationWindow {
         }
 
         ColumnLayout {
+            property bool inverse: false // for force updating start and stop buttons
+            id: buttons
             Layout.alignment: Qt.AlignTop
 
             Button {
@@ -169,22 +171,24 @@ ApplicationWindow {
 
             Button {
                 text: qsTr("Start")
-                enabled: infuTable.currentRow !== -1 && infuModel.get(infuTable.currentRow).state === ""
+                enabled: { buttons.inverse; return infuTable.currentRow !== -1 && infuModel.get(infuTable.currentRow).state === "" }
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", qsTr("Online"))
                         INFU_CONTROLLER.startInfusoria(infuModel.get(rowIndex).path)
+                        buttons.inverse = !buttons.inverse
                     })
                 }
             }
 
             Button {
                 text: qsTr("Stop")
-                enabled: infuTable.currentRow !== -1 && infuModel.get(infuTable.currentRow).state === qsTr("Online")
+                enabled: { buttons.inverse; return infuTable.currentRow !== -1 && infuModel.get(infuTable.currentRow).state === qsTr("Online") }
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", "")
                         INFU_CONTROLLER.stopInfusoria(infuModel.get(rowIndex).uuid)
+                        buttons.inverse = !buttons.inverse
                     })
                 }
             }
