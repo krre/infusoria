@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     webSocketManager = new WebSocketManager;
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Infusoria Manager");
+    parser.setApplicationDescription(QCoreApplication::applicationName());
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOptions({
