@@ -13,10 +13,15 @@ public:
 
 signals:
 
+private slots:
+    void onTimeoutHeartBeat();
+
 private:
     QString filePath;
     QString m_uuid;
     QString m_name;
     QString m_birthday;
     QVariantMap m_individuality;
+    int heartBeatInterval = 620;
+    QTimer* heartBeatTimer;
 };
