@@ -1,6 +1,5 @@
 #pragma once
 #include <QtCore>
-#include <iostream>
 
 #define LOGGER() Logger::Helper().stream()
 
