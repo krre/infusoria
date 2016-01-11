@@ -4,7 +4,7 @@
 
 extern QPointer<Settings> settings;
 
-Logger &Logger::instance()
+Logger& Logger::instance()
 {
     static Logger logger;
     return logger;
