@@ -20,7 +20,7 @@ WindowDialog {
             var filePath = directory.text + "/" + file.text
             if (UTILS.isFileExists(filePath)) {
                 stayOnScreen = true
-                var warningDialog = Dialog.warningMessage(qsTr("File is exists. Overwrite?"))
+                var warningDialog = Dialog.warning(qsTr("File is exists. Overwrite?"))
                 warningDialog.yes.connect(function() {
                     UTILS.removeFile(filePath)
                     INIT.create(name.text, filePath, getIndividuality())

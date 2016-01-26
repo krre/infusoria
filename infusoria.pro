@@ -43,11 +43,6 @@ DISTFILES += \
     src/gui/components/filedialog/FileDialogBase.qml \
     src/gui/components/filedialog/FileDialogDirectory.qml \
     src/gui/components/filedialog/FileDialogOpen.qml \
-    src/gui/components/messagedialog/MessageDialogBase.qml \
-    src/gui/components/messagedialog/MessageDialogError.qml \
-    src/gui/components/messagedialog/MessageDialogInformation.qml \
-    src/gui/components/messagedialog/MessageDialogQuestion.qml \
-    src/gui/components/messagedialog/MessageDialogWarning.qml \
     src/gui/components/BrowseButton.qml \
     src/gui/components/WindowDialog.qml \
     src/gui/dialog.js \
@@ -56,4 +51,5 @@ DISTFILES += \
     src/gui/NewInfusoria.qml \
     src/gui/components/ButtonBase.qml \
     src/gui/components/SliderIndividuality.qml \
-    src/gui/Editor.qml
+    src/gui/Editor.qml \
+    src/gui/components/MessageDialogBase.qml

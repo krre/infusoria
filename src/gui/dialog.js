@@ -1,4 +1,7 @@
+.import QtQuick.Dialogs 1.2 as Dialogs
 .import "utils.js" as Utils
+
+var messageDialogUrl = "qrc:/gui/components/MessageDialogBase.qml"
 
 function selectFile(parent, options) {
     return Utils.createDynamicObject(parent, "qrc:/gui/components/filedialog/FileDialogOpen.qml", options || {})
@@ -8,18 +11,22 @@ function selectDirectory(parent) {
     return Utils.createDynamicObject(parent, "qrc:/gui/components/filedialog/FileDialogDirectory.qml")
 }
 
-function infoMessage(message) {
-    return Utils.createDynamicObject(mainRoot, "qrc:/gui/components/messagedialog/MessageDialogInformation.qml", { text: message })
+function info(message, parent) {
+    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
+                                     { icon: Dialogs.StandardIcon.Information, text: message })
 }
 
-function warningMessage(message) {
-    return Utils.createDynamicObject(mainRoot, "qrc:/gui/components/messagedialog/MessageDialogWarning.qml", { text: message })
+function warning(message, parent) {
+    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
+                                     { icon: Dialogs.StandardIcon.Information, text: message })
 }
 
-function questionMessage(message) {
-    return Utils.createDynamicObject(mainRoot, "qrc:/gui/components/messagedialog/MessageDialogQuestion.qml", { text: message })
+function question(message, parent) {
+    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
+                                     { icon: Dialogs.StandardIcon.Information, standardButtons: Dialogs.StandardButton.Yes | Dialogs.StandardButton.No, text: message })
 }
 
-function errorMessage(message) {
-    return Utils.createDynamicObject(mainRoot, "qrc:/gui/components/messagedialog/MessageDialogError.qml", { text: message })
+function error(message, parent) {
+    return Utils.createDynamicObject(parent || mainRoot, messageDialogUrl,
+                                     { icon: Dialogs.StandardIcon.Critical, text: message })
 }
