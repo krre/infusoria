@@ -77,7 +77,7 @@ WindowDialog {
             TextField {
                 id: directory
                 Layout.fillWidth: true
-                text: SETTINGS.value("Path", "workspace")
+                text: Settings.value("Path", "workspace")
             }
 
             BrowseButton {

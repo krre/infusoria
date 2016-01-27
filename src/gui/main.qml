@@ -53,7 +53,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        var geometry = SETTINGS.map("Gui")
+        var geometry = Settings.map("Gui")
         if (Object.keys(geometry).length) {
             x = geometry.x
             y = geometry.y
@@ -76,7 +76,7 @@ ApplicationWindow {
     }
 
     onClosing: {
-        SETTINGS.setMap("Gui", {
+        Settings.setMap("Gui", {
             x: x,
             y: y,
             width: width,
@@ -162,7 +162,7 @@ ApplicationWindow {
                 text: qsTr("Add")
                 onClicked: {
                     var selectFileDialog = Dialog.selectFile(mainRoot, {
-                        selectMultiple: true, folder: UTILS.pathToUrl(SETTINGS.value("Path", "workspace")),
+                        selectMultiple: true, folder: UTILS.pathToUrl(Settings.value("Path", "workspace")),
                         nameFilters: [ qsTr("Infusoria files (*.infu)"), qsTr("All files (*)") ]})
                     selectFileDialog.accepted.connect(function() {
                         infuModel.addInfuList(selectFileDialog.fileUrls, true)

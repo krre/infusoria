@@ -13,9 +13,9 @@ WindowDialog {
     height: 200
 
     onAccepted: {
-        SETTINGS.setValue("Path", "workspace", workspacePath.text)
-        SETTINGS.setValue("Path", "log", logPath.text)
-        SETTINGS.setValue("Network", "port", port.text)
+        Settings.setValue("Path", "workspace", workspacePath.text)
+        Settings.setValue("Path", "log", logPath.text)
+        Settings.setValue("Network", "port", port.text)
     }
 
     ColumnLayout {
@@ -36,7 +36,7 @@ WindowDialog {
                 TextField {
                     id: workspacePath
                     Layout.fillWidth: true
-                    text: SETTINGS.value("Path", "workspace")
+                    text: Settings.value("Path", "workspace")
                     Component.onCompleted: forceActiveFocus()
                 }
 
@@ -56,7 +56,7 @@ WindowDialog {
                 TextField {
                     id: logPath
                     Layout.fillWidth: true
-                    text: SETTINGS.value("Path", "log")
+                    text: Settings.value("Path", "log")
                 }
 
                 BrowseButton {
@@ -82,7 +82,7 @@ WindowDialog {
 
                 TextField {
                     id: port
-                    text: SETTINGS.value("Network", "port")
+                    text: Settings.value("Network", "port")
                 }
             }
         }
