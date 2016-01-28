@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
             QQmlApplicationEngine engine;
             engine.rootContext()->setContextProperty("APP", &app);
             engine.rootContext()->setContextProperty("UTILS", &utils);
-            engine.rootContext()->setContextProperty("INIT", &init);
+            engine.rootContext()->setContextProperty("Init", &init);
             engine.rootContext()->setContextProperty("Settings", settings);
             engine.rootContext()->setContextProperty("INFU_CONTROLLER", infuController.data());
             engine.rootContext()->setContextProperty("FILE_OPERATIONS", &fileOperations);

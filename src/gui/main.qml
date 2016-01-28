@@ -96,7 +96,7 @@ ApplicationWindow {
             for (var i in list) {
                 var path = isUrl ? UTILS.urlToPath(list[i]) : list[i]
                 if (UTILS.isFileExists(path)) {
-                    var name = INIT.name(path)
+                    var name = Init.name(path)
                     var isAdded = false
                     for (var j = 0; j < infuModel.count; j++) {
                         if (infuModel.get(j).name === name) {
@@ -105,7 +105,7 @@ ApplicationWindow {
                         }
                     }
                     if (!isAdded) {
-                        var uuid = INIT.uuid(path)
+                        var uuid = Init.uuid(path)
                         infuModel.append({ name: name, state: "", path: path, uuid: uuid })
                     }
                 }

@@ -23,11 +23,11 @@ WindowDialog {
                 var warningDialog = Dialog.warning(qsTr("File is exists. Overwrite?"))
                 warningDialog.yes.connect(function() {
                     UTILS.removeFile(filePath)
-                    INIT.create(name.text, filePath, getIndividuality())
+                    Init.create(name.text, filePath, getIndividuality())
                     root.destroy()
                 })
             } else {
-                INIT.create(name.text, filePath, getIndividuality())
+                Init.create(name.text, filePath, getIndividuality())
                 if (openAfterCreating.checked) {
                     infuModel.append({ name: name.text, state: "", path: filePath })
                 }

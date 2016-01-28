@@ -15,8 +15,8 @@ WindowDialog {
     height: 300
 
     Component.onCompleted: {
-        birthday.text = new Date(Number(INIT.birthday(path.text))).toLocaleString()
-        var map = INIT.individuality(path.text)
+        birthday.text = new Date(Number(Init.birthday(path.text))).toLocaleString()
+        var map = Init.individuality(path.text)
         if (map) {
             sociability.text = Number(map.sociability).toFixed(4)
             zeal.text = Number(map.zeal).toFixed(4)
@@ -25,7 +25,7 @@ WindowDialog {
     }
 
     onAccepted: {
-        INIT.setName(name.text, path.text)
+        Init.setName(name.text, path.text)
         mainRoot.infuModel.setProperty(row, "name", name.text)
     }
 
