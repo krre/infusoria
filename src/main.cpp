@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
             engine.rootContext()->setContextProperty("UTILS", &utils);
             engine.rootContext()->setContextProperty("Init", &init);
             engine.rootContext()->setContextProperty("Settings", settings);
-            engine.rootContext()->setContextProperty("INFU_CONTROLLER", infuController.data());
+            engine.rootContext()->setContextProperty("InfuController", infuController.data());
             engine.rootContext()->setContextProperty("FILE_OPERATIONS", &fileOperations);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 

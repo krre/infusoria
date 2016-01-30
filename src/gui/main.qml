@@ -176,7 +176,7 @@ ApplicationWindow {
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", qsTr("Online"))
-                        INFU_CONTROLLER.startInfusoria(infuModel.get(rowIndex).path)
+                        InfuController.startInfusoria(infuModel.get(rowIndex).path)
                         buttons.inverse = !buttons.inverse
                     })
                 }
@@ -188,7 +188,7 @@ ApplicationWindow {
                 onClicked: {
                     infuTable.selection.forEach( function(rowIndex) {
                         infuModel.setProperty(rowIndex, "state", "")
-                        INFU_CONTROLLER.stopInfusoria(infuModel.get(rowIndex).uuid)
+                        InfuController.stopInfusoria(infuModel.get(rowIndex).uuid)
                         buttons.inverse = !buttons.inverse
                     })
                 }
