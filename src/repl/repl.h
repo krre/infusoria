@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore>
+#include <QObject>
 
 class Repl : public QObject
 {
@@ -10,4 +10,3 @@ public:
 
 private:
 };
-

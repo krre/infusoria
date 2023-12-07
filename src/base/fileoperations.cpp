@@ -1,4 +1,7 @@
 #include "fileoperations.h"
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
 
 void FileOperations::saveList(const QString& filePath, const QStringList& list)
 {

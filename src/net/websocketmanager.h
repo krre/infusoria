@@ -1,10 +1,10 @@
 #pragma once
-#include <QtCore>
 #include <QtWebSockets>
-#include "../base/infucontroller.h"
 
-QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
-QT_FORWARD_DECLARE_CLASS(QWebSocket)
+class QWebSocketServer;
+class QWebSocket;
+
+class InfuController;
 
 class WebSocketManager : public QObject
 {

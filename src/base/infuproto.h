@@ -1,6 +1,8 @@
 #pragma once
-#include <QtCore>
-#include <QtWebSockets>
+
+class QString;
+class QJsonDocument;
+class QWebSocket;
 
 class InfuProto
 {

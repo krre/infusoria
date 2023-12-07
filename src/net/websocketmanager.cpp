@@ -3,6 +3,7 @@
 #include <settings.h>
 #include "../logger/logger.h"
 #include "../base/infuproto.h"
+#include "../base/infucontroller.h"
 
 extern QPointer<Settings> settings;
 

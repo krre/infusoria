@@ -1,7 +1,9 @@
 #pragma once
-#include <QtCore>
-#include <QtWebSockets>
-#include "../infusoria/infusoria.h"
+#include <QObject>
+#include <QHash>
+
+class QWebSocket;
+class Infusoria;
 
 class InfuController : public QObject
 {

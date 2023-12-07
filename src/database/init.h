@@ -1,6 +1,8 @@
 #pragma once
-#include <QtCore>
-#include <QtSql>
+#include <QObject>
+#include <QVariantMap>
+
+class QSqlDatabase;
 
 class Init : public QObject
 {

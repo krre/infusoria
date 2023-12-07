@@ -1,5 +1,7 @@
 #pragma once
-#include <QtCore>
+#include <QVariant>
+
+class QSettings;
 
 class Settings : public QObject
 {

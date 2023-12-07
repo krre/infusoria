@@ -1,6 +1,7 @@
 #include "infusoria.h"
 #include "../logger/logger.h"
 #include "../database/init.h"
+#include <QTimer>
 
 void Infusoria::run()
 {

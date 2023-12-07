@@ -1,4 +1,5 @@
 #include "infucontroller.h"
+#include "../infusoria/infusoria.h"
 
 InfuController::InfuController(QObject* parent) : QObject(parent)
 {

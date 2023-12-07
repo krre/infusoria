@@ -2,6 +2,9 @@
 #include "../logger/logger.h"
 #include "infucontroller.h"
 #include "fileoperations.h"
+#include "../infusoria/infusoria.h"
+#include <QWebSocket>
+#include <QtCore>
 
 extern QPointer<InfuController> infuController;
 

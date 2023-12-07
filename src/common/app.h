@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore>
+#include <QApplication>
 
 class App : public QObject
 {

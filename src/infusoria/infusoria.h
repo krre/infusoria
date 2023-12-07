@@ -1,4 +1,7 @@
-#include <QtCore>
+#include <QThread>
+#include <QVariantMap>
+
+class QTimer;
 
 class Infusoria : public QThread
 {

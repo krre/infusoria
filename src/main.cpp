@@ -1,15 +1,14 @@
-#include <QApplication>
-#include <QtCore>
-#include <QtQml>
-#include <app.h>
-#include <utils.h>
-#include <settings.h>
 #include "database/init.h"
 #include "repl/repl.h"
-#include "logger/logger.h"
 #include "base/infucontroller.h"
 #include "base/fileoperations.h"
 #include "net/websocketmanager.h"
+#include <app.h>
+#include <utils.h>
+#include <settings.h>
+#include <QApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 QPointer<Settings> settings;
 QPointer<InfuController> infuController;
