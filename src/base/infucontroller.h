@@ -5,8 +5,7 @@
 class QWebSocket;
 class Infusoria;
 
-class InfuController : public QObject
-{
+class InfuController : public QObject {
     Q_OBJECT
 public:
     explicit InfuController(QObject* parent = 0);

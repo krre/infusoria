@@ -4,8 +4,7 @@
 
 #define LOGGER() Logger::Helper().stream()
 
-class Logger : public QObject
-{
+class Logger : public QObject {
     Q_OBJECT
 
 public:

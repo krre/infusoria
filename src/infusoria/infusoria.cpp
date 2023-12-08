@@ -3,8 +3,7 @@
 #include "../database/init.h"
 #include <QTimer>
 
-void Infusoria::run()
-{
+void Infusoria::run() {
     LOGGER() << "Infusoria started with" << filePath;
     heartBeatTimer = new QTimer();
     connect(heartBeatTimer, &QTimer::timeout, this, &Infusoria::onTimeoutHeartBeat);
@@ -22,7 +21,6 @@ void Infusoria::setFilePath(const QString& filePath) {
     m_individuality = Init::individuality(filePath);
 }
 
-void Infusoria::onTimeoutHeartBeat()
-{
+void Infusoria::onTimeoutHeartBeat() {
 //    qDebug() << "heart beat";
 }

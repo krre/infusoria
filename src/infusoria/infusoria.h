@@ -3,8 +3,7 @@
 
 class QTimer;
 
-class Infusoria : public QThread
-{
+class Infusoria : public QThread {
     Q_OBJECT
 public:
     void run() override;

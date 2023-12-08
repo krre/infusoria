@@ -1,8 +1,7 @@
 #pragma once
 #include <QApplication>
 
-class App : public QObject
-{
+class App : public QObject {
     Q_OBJECT
     Q_PROPERTY(QString version READ version CONSTANT)
     Q_PROPERTY(unsigned int major READ major CONSTANT)

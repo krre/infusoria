@@ -4,8 +4,7 @@ class QString;
 class QJsonDocument;
 class QWebSocket;
 
-class InfuProto
-{
+class InfuProto {
 public:
     InfuProto();
     static void send(const QString& message);

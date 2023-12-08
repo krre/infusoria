@@ -7,8 +7,7 @@
 
 extern QPointer<Settings> settings;
 
-WebSocketManager::WebSocketManager()
-{
+WebSocketManager::WebSocketManager() {
     server = new QWebSocketServer("Infusoria", QWebSocketServer::NonSecureMode, this);
     connect(server, &QWebSocketServer::acceptError, this, &WebSocketManager::onAcceptError);
     connect(server, &QWebSocketServer::serverError, this, &WebSocketManager::onServerError);
@@ -26,18 +25,15 @@ WebSocketManager::~WebSocketManager() {
     qDeleteAll(clients.begin(), clients.end());
 }
 
-void WebSocketManager::onAcceptError(QAbstractSocket::SocketError socketError)
-{
+void WebSocketManager::onAcceptError(QAbstractSocket::SocketError socketError) {
     qDebug() << "Accept error:" << socketError;
 }
 
-void WebSocketManager::onServerError(QWebSocketProtocol::CloseCode closeCode)
-{
+void WebSocketManager::onServerError(QWebSocketProtocol::CloseCode closeCode) {
     qDebug() << "Server error:" << closeCode;
 }
 
-void WebSocketManager::onNewConnection()
-{
+void WebSocketManager::onNewConnection() {
     QWebSocket* socket = server->nextPendingConnection();
 
     connect(socket, &QWebSocket::textMessageReceived, this, &WebSocketManager::processTextMessage);
@@ -49,24 +45,21 @@ void WebSocketManager::onNewConnection()
     LOGGER() << "Connection with" << socket->localAddress().toString();
 }
 
-void WebSocketManager::processTextMessage(QString message)
-{
+void WebSocketManager::processTextMessage(QString message) {
     QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         InfuProto::receive(message, client);
     }
 }
 
-void WebSocketManager::processBinaryMessage(QByteArray message)
-{
+void WebSocketManager::processBinaryMessage(QByteArray message) {
     QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         client->sendBinaryMessage(message);
     }
 }
 
-void WebSocketManager::socketDisconnected()
-{
+void WebSocketManager::socketDisconnected() {
     QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         clients.removeAll(client);

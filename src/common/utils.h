@@ -3,8 +3,7 @@
 #include <QUrl>
 #include <QStandardPaths>
 
-class Utils : public QObject
-{
+class Utils : public QObject {
     Q_OBJECT
     Q_PROPERTY(QString homePath READ homePath CONSTANT)
 

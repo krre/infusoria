@@ -1,8 +1,7 @@
 #pragma once
 #include <QObject>
 
-class Repl : public QObject
-{
+class Repl : public QObject {
     Q_OBJECT
 public:
     explicit Repl();

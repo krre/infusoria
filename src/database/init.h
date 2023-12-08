@@ -4,8 +4,7 @@
 
 class QSqlDatabase;
 
-class Init : public QObject
-{
+class Init : public QObject {
     Q_OBJECT
 public:
     Init() {}

@@ -2,8 +2,7 @@
 #include <app.h>
 #include <QtSql>
 
-bool Init::create(const QString& name, const QString& filePath, const QVariantMap& individuality)
-{
+bool Init::create(const QString& name, const QString& filePath, const QVariantMap& individuality) {
     QFileInfo checkFile(filePath);
     if (checkFile.exists() && checkFile.isFile()) {
         qDebug() << "File is exist";
@@ -27,8 +26,7 @@ bool Init::create(const QString& name, const QString& filePath, const QVariantMa
     return true;
 }
 
-void Init::setName(const QString& name, const QString& filePath)
-{
+void Init::setName(const QString& name, const QString& filePath) {
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
         db.setDatabaseName(filePath);
@@ -51,8 +49,7 @@ void Init::setName(const QString& name, const QString& filePath)
     QSqlDatabase::removeDatabase(filePath);
 }
 
-QVariantMap Init::individuality(const QString& filePath)
-{
+QVariantMap Init::individuality(const QString& filePath) {
     QVariantMap map;
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
@@ -71,15 +68,13 @@ QVariantMap Init::individuality(const QString& filePath)
     return map;
 }
 
-void Init::initTables(const QSqlDatabase& db)
-{
+void Init::initTables(const QSqlDatabase& db) {
     QSqlQuery query(db);
     query.exec("CREATE TABLE Defs(name, value)");
     query.exec("CREATE TABLE Individuality(name, value)");
 }
 
-void Init::initRecords(const QSqlDatabase& db, const QString& name)
-{
+void Init::initRecords(const QSqlDatabase& db, const QString& name) {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Defs (name, value) "
                   "VALUES (:name, :value)");
@@ -120,8 +115,7 @@ void Init::initRecords(const QSqlDatabase& db, const QString& name)
     }
 }
 
-void Init::addIndividuality(const QSqlDatabase& db, const QVariantMap& individuality)
-{
+void Init::addIndividuality(const QSqlDatabase& db, const QVariantMap& individuality) {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Individuality (name, value) "
                   "VALUES (:name, :value)");
@@ -141,8 +135,7 @@ void Init::addIndividuality(const QSqlDatabase& db, const QVariantMap& individua
     }
 }
 
-QString Init::name(const QString &filePath)
-{
+QString Init::name(const QString &filePath) {
     QString name;
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
@@ -161,8 +154,7 @@ QString Init::name(const QString &filePath)
     return name;
 }
 
-QString Init::uuid(const QString &filePath)
-{
+QString Init::uuid(const QString &filePath) {
     QString uuid;
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);
@@ -181,8 +173,7 @@ QString Init::uuid(const QString &filePath)
     return uuid;
 }
 
-QString Init::birthday(const QString& filePath)
-{
+QString Init::birthday(const QString& filePath) {
     QString birthday;
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", filePath);

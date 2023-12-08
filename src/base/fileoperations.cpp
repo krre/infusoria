@@ -3,8 +3,7 @@
 #include <QTextStream>
 #include <QDebug>
 
-void FileOperations::saveList(const QString& filePath, const QStringList& list)
-{
+void FileOperations::saveList(const QString& filePath, const QStringList& list) {
     QFile file(filePath);
     if (file.open(QFile::WriteOnly | QFile::Text)) {
         QTextStream stream(&file);
@@ -17,8 +16,7 @@ void FileOperations::saveList(const QString& filePath, const QStringList& list)
     file.close();
 }
 
-QStringList FileOperations::loadList(const QString& filePath)
-{
+QStringList FileOperations::loadList(const QString& filePath) {
     QStringList list;
     QFile file(filePath);
     if (file.open(QFile::ReadOnly | QFile::Text)) {

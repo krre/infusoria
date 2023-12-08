@@ -1,13 +1,11 @@
 #include "repl.h"
 #include <QDebug>
 
-Repl::Repl()
-{
+Repl::Repl() {
 
 }
 
-void Repl::run()
-{
+void Repl::run() {
     qDebug() << "REPL";
 }
 

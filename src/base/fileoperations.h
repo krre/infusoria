@@ -1,8 +1,7 @@
 #pragma once
 #include <QObject>
 
-class FileOperations : public QObject
-{
+class FileOperations : public QObject {
     Q_OBJECT
 public:
     FileOperations() {}

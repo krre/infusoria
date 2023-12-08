@@ -8,13 +8,11 @@
 
 extern QPointer<InfuController> infuController;
 
-InfuProto::InfuProto()
-{
+InfuProto::InfuProto() {
 
 }
 
-void InfuProto::send(const QString& message)
-{
+void InfuProto::send(const QString& message) {
     if (!infuController->aquariums()->count()) return;
     QJsonObject obj;
     obj["info"] = "log";
@@ -26,8 +24,7 @@ void InfuProto::send(const QString& message)
     }
 }
 
-void InfuProto::send(QJsonDocument& message, QWebSocket* client)
-{
+void InfuProto::send(QJsonDocument& message, QWebSocket* client) {
     QJsonObject obj = message.object();
     obj["sender"] = "IM";
     message.setObject(obj);
@@ -40,8 +37,7 @@ void InfuProto::send(QJsonDocument& message, QWebSocket* client)
              */
 }
 
-void InfuProto::receive(const QString& message, QWebSocket* client)
-{
+void InfuProto::receive(const QString& message, QWebSocket* client) {
 //    LOGGER() << QString("RECEIVE from IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << message;
 
     QByteArray ba;

@@ -6,8 +6,7 @@ class QWebSocket;
 
 class InfuController;
 
-class WebSocketManager : public QObject
-{
+class WebSocketManager : public QObject {
     Q_OBJECT
 public:
     WebSocketManager();

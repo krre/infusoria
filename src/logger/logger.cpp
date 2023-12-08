@@ -5,14 +5,12 @@
 
 extern QPointer<Settings> settings;
 
-Logger& Logger::instance()
-{
+Logger& Logger::instance() {
     static Logger logger;
     return logger;
 }
 
-QString Logger::Helper::logPath()
-{
+QString Logger::Helper::logPath() {
     QString logDir = settings->value("Path", "log").toString();
     QDir dir;
     dir.mkdir(logDir);
@@ -20,7 +18,6 @@ QString Logger::Helper::logPath()
 }
 
 void Logger::Helper::write() {
-
     QString text;
     QTextStream ts(&text);
     ts << QDateTime::currentDateTimeUtc().toLocalTime().toString("yyyy-MM-dd hh:mm:ss.zzz") << "\n";
