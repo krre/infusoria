@@ -1,6 +1,6 @@
-#include "logger.h"
-#include <settings.h>
-#include "../base/infuproto.h"
+#include "Logger.h"
+#include <Settings.h>
+#include "../base/InfuProto.h"
 #include <QtCore>
 
 extern QPointer<Settings> settings;

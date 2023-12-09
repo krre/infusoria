@@ -2,11 +2,11 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 HEADERS += \
-    $$PWD/app.h \
-    $$PWD/macro.h \
-    $$PWD/settings.h \
-    $$PWD/utils.h
+    $$PWD/App.h \
+    $$PWD/Macro.h \
+    $$PWD/Settings.h \
+    $$PWD/Utils.h
 
 SOURCES += \
-    $$PWD/settings.cpp \
-    $$PWD/utils.cpp
+    $$PWD/Settings.cpp \
+    $$PWD/Utils.cpp

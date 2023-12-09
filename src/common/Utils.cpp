@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "Utils.h"
 #include <QFileInfo>
 
 QString Utils::pathToBaseName(const QString& path) {

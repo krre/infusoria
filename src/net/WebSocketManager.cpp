@@ -1,9 +1,9 @@
-#include "websocketmanager.h"
-#include <app.h>
-#include <settings.h>
-#include "../logger/logger.h"
-#include "../base/infuproto.h"
-#include "../base/infucontroller.h"
+#include "WebSocketManager.h"
+#include <App.h>
+#include <Settings.h>
+#include "../logger/Logger.h"
+#include "../base/InfuProto.h"
+#include "../base/InfuController.h"
 
 extern QPointer<Settings> settings;
 

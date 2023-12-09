@@ -1,4 +1,4 @@
-#include "fileoperations.h"
+#include "FileOperations.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>

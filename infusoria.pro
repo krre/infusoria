@@ -13,25 +13,25 @@ DEFINES += \
 include(src/common/common.pri)
 
 SOURCES += \
+    src/base/FileOperations.cpp \
+    src/base/InfuController.cpp \
+    src/base/InfuProto.cpp \
+    src/database/Init.cpp \
+    src/infusoria/Infusoria.cpp \
+    src/logger/Logger.cpp \
     src/main.cpp \
-    src/database/init.cpp \
-    src/net/websocketmanager.cpp \
-    src/infusoria/infusoria.cpp \
-    src/repl/repl.cpp \
-    src/logger/logger.cpp \
-    src/base/infucontroller.cpp \
-    src/base/infuproto.cpp \
-    src/base/fileoperations.cpp
+    src/net/WebSocketManager.cpp \
+    src/repl/Repl.cpp
 
 HEADERS += \
-    src/database/init.h \
-    src/net/websocketmanager.h \
-    src/infusoria/infusoria.h \
-    src/repl/repl.h \
-    src/logger/logger.h \
-    src/base/infucontroller.h \
-    src/base/infuproto.h \
-    src/base/fileoperations.h
+    src/base/FileOperations.h \
+    src/base/InfuController.h \
+    src/base/InfuProto.h \
+    src/database/Init.h \
+    src/infusoria/Infusoria.h \
+    src/logger/Logger.h \
+    src/net/WebSocketManager.h \
+    src/repl/Repl.h
 
 RESOURCES += \
     src/qml.qrc

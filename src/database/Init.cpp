@@ -1,5 +1,5 @@
-#include "init.h"
-#include <app.h>
+#include "Init.h"
+#include <App.h>
 #include <QtSql>
 
 bool Init::create(const QString& name, const QString& filePath, const QVariantMap& individuality) {

@@ -6,6 +6,4 @@ class Repl : public QObject {
 public:
     explicit Repl();
     void run();
-
-private:
 };

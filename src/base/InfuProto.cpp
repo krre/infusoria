@@ -1,8 +1,8 @@
-#include "infuproto.h"
-#include "../logger/logger.h"
-#include "infucontroller.h"
-#include "fileoperations.h"
-#include "../infusoria/infusoria.h"
+#include "InfuProto.h"
+#include "../logger/Logger.h"
+#include "InfuController.h"
+#include "FileOperations.h"
+#include "../infusoria/Infusoria.h"
 #include <QWebSocket>
 #include <QtCore>
 

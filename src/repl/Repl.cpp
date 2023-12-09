@@ -1,4 +1,4 @@
-#include "repl.h"
+#include "Repl.h"
 #include <QDebug>
 
 Repl::Repl() {
