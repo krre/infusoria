@@ -1,4 +1,4 @@
-# Infusoria Manager
+# Infusoria
 Multi-agent system for managing intelligent agents named Infusoria
 
 ## Dependencies
