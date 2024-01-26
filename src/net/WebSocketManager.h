@@ -20,8 +20,8 @@ private slots:
     void onAcceptError(QAbstractSocket::SocketError socketError);
     void onServerError(QWebSocketProtocol::CloseCode closeCode);
     void onNewConnection();
-    void processTextMessage(QString message);
-    void processBinaryMessage(QByteArray message);
+    void processTextMessage(const QString& message);
+    void processBinaryMessage(const QByteArray& message);
     void socketDisconnected();
 
 private:

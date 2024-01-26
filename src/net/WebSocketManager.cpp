@@ -45,14 +45,14 @@ void WebSocketManager::onNewConnection() {
     LOGGER() << "Connection with" << socket->localAddress().toString();
 }
 
-void WebSocketManager::processTextMessage(QString message) {
+void WebSocketManager::processTextMessage(const QString& message) {
     QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         InfuProto::receive(message, client);
     }
 }
 
-void WebSocketManager::processBinaryMessage(QByteArray message) {
+void WebSocketManager::processBinaryMessage(const QByteArray& message) {
     QWebSocket* client = qobject_cast<QWebSocket*>(sender());
     if (client) {
         client->sendBinaryMessage(message);
