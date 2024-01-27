@@ -1,5 +1,5 @@
 #include "Init.h"
-#include <App.h>
+#include <Application.h>
 #include <QtSql>
 
 bool Init::create(const QString& name, const QString& filePath, const QVariantMap& individuality) {
@@ -80,7 +80,7 @@ void Init::initRecords(const QSqlDatabase& db, const QString& name) {
                   "VALUES (:name, :value)");
     // Verison
     query.bindValue(":name", "version");
-    query.bindValue(":value", App::version());
+    query.bindValue(":value", Application::version());
     bool result = query.exec();
     if (!result) {
         qDebug("Error occurred insert record");
