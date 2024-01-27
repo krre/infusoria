@@ -22,6 +22,13 @@ int main(int argc, char* argv[]) {
 
     ::settings = new Settings;
 
+    if (settings->isEmpty()) {
+        settings->setValue("Path", "workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
+        settings->setValue("Path", "log", qApp->applicationDirPath() + "/log");
+        settings->setValue("Network", "port", 51000);
+        settings->sync();
+    }
+
     QSharedPointer<Repl> repl;
     infuController = new InfuController;
     webSocketManager = new WebSocketManager;

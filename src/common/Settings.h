@@ -17,6 +17,9 @@ public:
     Q_INVOKABLE void setList(const QString& group, const QStringList& list);
     Q_INVOKABLE QStringList list(const QString& group);
 
+    bool isEmpty() const;
+    void sync();
+
 private:
     QSettings* settings;
 

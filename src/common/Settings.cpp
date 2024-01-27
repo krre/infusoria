@@ -6,13 +6,6 @@
 Settings::Settings() {
     settings = new QSettings(this);
     settings->setIniCodec("UTF-8");
-
-    if (settings->allKeys().isEmpty()) {
-        settings->setValue("Path/workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
-        settings->setValue("Path/log", qApp->applicationDirPath() + "/log");
-        settings->setValue("Network/port", 51000);
-        settings->sync();
-    }
 }
 
 void Settings::setValue(const QString& group, const QString& key, const QVariant& value) {
@@ -66,5 +59,13 @@ QStringList Settings::list(const QString& group) {
         }
     settings->endGroup();
 
-    return list;
+        return list;
+}
+
+bool Settings::isEmpty() const {
+    return settings->allKeys().empty();
+}
+
+void Settings::sync() {
+    settings->sync();
 }
