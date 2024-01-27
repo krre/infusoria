@@ -15,10 +15,10 @@ QPointer<InfuController> infuController;
 QPointer<WebSocketManager> webSocketManager;
 
 int main(int argc, char* argv[]) {
-    Application appication(argc, argv);
-    appication.setApplicationName("Infusoria");
-    appication.setOrganizationName("Infusoria");
-    appication.setApplicationVersion("0.1.0");
+    Application application(argc, argv);
+    application.setApplicationName("Infusoria");
+    application.setOrganizationName("Infusoria");
+    application.setApplicationVersion("0.1.0");
 
     ::settings = new Settings;
 
@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
         {{"r", "repl"}, QCoreApplication::translate("main", "Interactive mode")},
     });
 
-    parser.process(appication);
+    parser.process(application);
 
     if (argc == 1) {
         parser.showHelp();
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
             FileOperations fileOperations;
 
             QQmlApplicationEngine engine;
-            engine.rootContext()->setContextProperty("APP", &appication);
+            engine.rootContext()->setContextProperty("APP", &application);
             engine.rootContext()->setContextProperty("UTILS", &utils);
             engine.rootContext()->setContextProperty("Init", &init);
             engine.rootContext()->setContextProperty("Settings", settings);
@@ -54,12 +54,12 @@ int main(int argc, char* argv[]) {
             engine.rootContext()->setContextProperty("FileOperations", &fileOperations);
             engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 
-            return appication.exec();
+            return application.exec();
 
         } else if (parser.isSet("repl")) {
             repl = repl.create();
             repl->run();
-            return appication.exec();
+            return application.exec();
         }
     }
 
