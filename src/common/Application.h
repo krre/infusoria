@@ -1,7 +1,7 @@
 #pragma once
 #include <QApplication>
 
-class App : public QObject {
+class Application : public QApplication {
     Q_OBJECT
     Q_PROPERTY(QString version READ version CONSTANT)
     Q_PROPERTY(QString buildDate READ buildDate CONSTANT)
@@ -9,6 +9,8 @@ class App : public QObject {
     Q_PROPERTY(QString applicationDirPath READ applicationDirPath CONSTANT)
 
 public:
+    Application(int& argc, char* argv[]);
+
     static unsigned int major() { return MAJOR; }
     static unsigned int minor() { return MINOR; }
     static unsigned int patch() { return PATCH; }

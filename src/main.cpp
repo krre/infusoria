@@ -3,7 +3,7 @@
 #include "base/InfuController.h"
 #include "base/FileOperations.h"
 #include "net/WebSocketManager.h"
-#include <App.h>
+#include <Application.h>
 #include <Utils.h>
 #include <Settings.h>
 #include <QApplication>
@@ -15,12 +15,13 @@ QPointer<InfuController> infuController;
 QPointer<WebSocketManager> webSocketManager;
 
 int main(int argc, char *argv[]) {
-    QApplication appication(argc, argv);
+    Application appication(argc, argv);
     appication.setApplicationName("Infusoria");
     appication.setApplicationVersion("0.1.0");
 
     QString filePath = qApp->applicationDirPath() + "/infusoria.ini";
     ::settings = new Settings(filePath);
+
     if (!QFile::exists(filePath)) {
         settings->setValue("Path", "workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
         settings->setValue("Path", "log", qApp->applicationDirPath() + "/log");
@@ -46,13 +47,12 @@ int main(int argc, char *argv[]) {
         parser.showHelp();
     } else {
         if (parser.isSet("gui")) {
-            App app;
             Utils utils;
             Init init;
             FileOperations fileOperations;
 
             QQmlApplicationEngine engine;
-            engine.rootContext()->setContextProperty("APP", &app);
+            engine.rootContext()->setContextProperty("APP", &appication);
             engine.rootContext()->setContextProperty("UTILS", &utils);
             engine.rootContext()->setContextProperty("Init", &init);
             engine.rootContext()->setContextProperty("Settings", settings);
