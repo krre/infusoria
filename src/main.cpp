@@ -14,7 +14,7 @@ QPointer<Settings> settings;
 QPointer<InfuController> infuController;
 QPointer<WebSocketManager> webSocketManager;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     Application appication(argc, argv);
     appication.setApplicationName("Infusoria");
     appication.setApplicationVersion("0.1.0");
