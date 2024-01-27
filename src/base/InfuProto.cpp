@@ -13,14 +13,14 @@ InfuProto::InfuProto() {
 }
 
 void InfuProto::send(const QString& message) {
-    if (!infuController->aquariums()->count()) return;
+    if (!infuController->infusoriums()->count()) return;
     QJsonObject obj;
     obj["info"] = "log";
     obj["value"] = message;
     QJsonDocument sendDoc(obj);
 
-    for (int i = 0; i < infuController->aquariums()->count(); ++i) {
-        send(sendDoc, infuController->aquariums()->at(i));
+    for (int i = 0; i < infuController->infusoriums()->count(); ++i) {
+        send(sendDoc, infuController->infusoriums()->at(i));
     }
 }
 
@@ -45,7 +45,7 @@ void InfuProto::receive(const QString& message, QWebSocket* client) {
     QJsonDocument receiveDoc = QJsonDocument::fromJson(ba);
     QString sender = receiveDoc.object()["sender"].toString();
     QString action = receiveDoc.object()["action"].toString();
-    if (sender == "aquarium") {
+    if (sender == "infusorium") {
         if (action == "getInfusories") {
             QHash<QString, Infusoria*>* infusories = infuController->online();
             QJsonObject obj;
@@ -67,7 +67,7 @@ void InfuProto::receive(const QString& message, QWebSocket* client) {
         } else if (action == "getLog") {
             QJsonObject options = receiveDoc.object()["options"].toObject();
             if (options["enable"].toBool()) {
-                infuController->addAquarium(client);
+                infuController->addInfusorium(client);
                 QJsonObject obj;
                 obj["action"] = action;
                 QJsonArray array = QJsonArray::fromStringList(FileOperations::loadList(Logger::Helper().logPath()));
@@ -75,7 +75,7 @@ void InfuProto::receive(const QString& message, QWebSocket* client) {
                 QJsonDocument sendDoc(obj);
                 send(sendDoc, client);
             } else {
-                infuController->removeAquarium(client);
+                infuController->removeInfusorium(client);
             }
         } else if (action == "getInfusoria") {
             QJsonObject options = receiveDoc.object()["options"].toObject();
@@ -96,7 +96,7 @@ void InfuProto::receive(const QString& message, QWebSocket* client) {
             send(sendDoc, client);
         } else if (action == "message") {
             QJsonObject options = receiveDoc.object()["options"].toObject();
-            QString message = "MESSAGE from Aquarium: " + options["message"].toString();
+            QString message = "MESSAGE from Infusorium: " + options["message"].toString();
             qDebug() << message;
             LOGGER() << message;
         }

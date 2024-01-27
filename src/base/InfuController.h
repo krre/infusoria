@@ -12,13 +12,13 @@ public:
     Q_INVOKABLE void startInfusoria(const QString& filePath);
     Q_INVOKABLE void stopInfusoria(const QString& uuid);
     QHash<QString, Infusoria*>* online() { return &infusories; }
-    void addAquarium(QWebSocket* aquarium) { m_aquariums.append(aquarium); }
-    void removeAquarium(QWebSocket* aquarium) { m_aquariums.removeOne(aquarium); }
-    QList<QWebSocket*>* aquariums() { return &m_aquariums; }
+    void addInfusorium(QWebSocket* infusorium) { m_infusoriums.append(infusorium); }
+    void removeInfusorium(QWebSocket* infusorium) { m_infusoriums.removeOne(infusorium); }
+    QList<QWebSocket*>* infusoriums() { return &m_infusoriums; }
 
 signals:
 
 private:
     QHash<QString, Infusoria*> infusories;
-    QList<QWebSocket*> m_aquariums;
+    QList<QWebSocket*> m_infusoriums;
 };
