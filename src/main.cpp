@@ -17,16 +17,10 @@ QPointer<WebSocketManager> webSocketManager;
 int main(int argc, char* argv[]) {
     Application appication(argc, argv);
     appication.setApplicationName("Infusoria");
+    appication.setOrganizationName("Infusoria");
     appication.setApplicationVersion("0.1.0");
 
-    QString filePath = qApp->applicationDirPath() + "/infusoria.ini";
-    ::settings = new Settings(filePath);
-
-    if (!QFile::exists(filePath)) {
-        settings->setValue("Path", "workspace", QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/infusoria");
-        settings->setValue("Path", "log", qApp->applicationDirPath() + "/log");
-        settings->setValue("Network", "port", 51000);
-    }
+    ::settings = new Settings;
 
     QSharedPointer<Repl> repl;
     infuController = new InfuController;

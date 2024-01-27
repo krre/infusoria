@@ -1,5 +1,4 @@
 #include "WebSocketManager.h"
-#include <App.h>
 #include <Settings.h>
 #include "../logger/Logger.h"
 #include "../base/InfuProto.h"
