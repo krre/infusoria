@@ -1,5 +1,5 @@
 # Infusoria
-Multi-agent system for managing intelligent agents named Infusoria
+Artifical life unit
 
 ## Dependencies
-- Qt 5.5.0
+- Qt 5.15.0
