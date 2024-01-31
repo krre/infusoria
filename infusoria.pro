@@ -20,8 +20,7 @@ SOURCES += \
     src/infusoria/Infusoria.cpp \
     src/logger/Logger.cpp \
     src/main.cpp \
-    src/net/WebSocketManager.cpp \
-    src/repl/Repl.cpp
+    src/net/WebSocketManager.cpp
 
 HEADERS += \
     src/base/FileOperations.h \
@@ -30,8 +29,7 @@ HEADERS += \
     src/database/Init.h \
     src/infusoria/Infusoria.h \
     src/logger/Logger.h \
-    src/net/WebSocketManager.h \
-    src/repl/Repl.h
+    src/net/WebSocketManager.h
 
 RESOURCES += \
     src/qml.qrc
