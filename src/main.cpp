@@ -14,10 +14,10 @@ QPointer<InfuController> infuController;
 QPointer<WebSocketManager> webSocketManager;
 
 int main(int argc, char* argv[]) {
-    Application application(argc, argv);
-    application.setApplicationName("Infusoria");
-    application.setOrganizationName("Infusoria");
-    application.setApplicationVersion("0.1.0");
+    Application app(argc, argv);
+    app.setApplicationName("Infusoria");
+    app.setOrganizationName("Infusoria");
+    app.setApplicationVersion("0.1.0");
 
     ::settings = new Settings;
 
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     FileOperations fileOperations;
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("APP", &application);
+    engine.rootContext()->setContextProperty("APP", &app);
     engine.rootContext()->setContextProperty("UTILS", &utils);
     engine.rootContext()->setContextProperty("Init", &init);
     engine.rootContext()->setContextProperty("Settings", settings);
@@ -44,5 +44,5 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("FileOperations", &fileOperations);
     engine.load(QUrl(QStringLiteral("qrc:/gui/main.qml")));
 
-    return application.exec();
+    return app.exec();
 }
