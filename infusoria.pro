@@ -2,8 +2,6 @@ TEMPLATE = app
 QT += widgets qml quick sql websockets
 
 CONFIG += c++20
-CONFIG += console
-CONFIG -= app_bundle
 
 include(src/common/common.pri)
 
