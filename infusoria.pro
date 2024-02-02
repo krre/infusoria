@@ -1,7 +1,7 @@
 TEMPLATE = app
 QT += widgets qml quick sql websockets
 
-CONFIG += c++11
+CONFIG += c++20
 CONFIG += console
 CONFIG -= app_bundle
 
