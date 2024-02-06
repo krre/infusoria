@@ -13,8 +13,6 @@ public:
     QString birthday() { return m_birthday; }
     QVariantMap individuality() { return m_individuality; }
 
-signals:
-
 private slots:
     void onTimeoutHeartBeat();
 

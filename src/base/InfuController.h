@@ -16,8 +16,6 @@ public:
     void removeInfusorium(QWebSocket* infusorium) { m_infusoriums.removeOne(infusorium); }
     QList<QWebSocket*>* infusoriums() { return &m_infusoriums; }
 
-signals:
-
 private:
     QHash<QString, Infusoria*> infusories;
     QList<QWebSocket*> m_infusoriums;
