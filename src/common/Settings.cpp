@@ -5,7 +5,6 @@
 
 Settings::Settings() {
     settings = new QSettings(this);
-    settings->setIniCodec("UTF-8");
 }
 
 void Settings::setValue(const QString& group, const QString& key, const QVariant& value) {

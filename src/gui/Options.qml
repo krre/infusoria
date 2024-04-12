@@ -1,6 +1,6 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import QtQuick.Window 2.2
 import "components"
 import "dialog.js" as Dialog

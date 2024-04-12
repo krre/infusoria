@@ -1,5 +1,5 @@
-import QtQuick 2.5
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Dialogs
 
 MessageDialog {
     title: Qt.application.name

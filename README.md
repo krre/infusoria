@@ -2,4 +2,4 @@
 Artifical life unit
 
 ## Dependencies
-- Qt 5.15.0
+- Qt 6.7

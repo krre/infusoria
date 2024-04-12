@@ -1,4 +1,4 @@
-.import QtQuick.Dialogs 1.2 as Dialogs
+.import QtQuick.Dialogs as Dialogs
 .import "utils.js" as Utils
 
 var messageDialogUrl = "qrc:/gui/components/MessageDialogBase.qml"

@@ -1,8 +1,10 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.1
-import QtQuick.Window 2.2
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
+import QtQuick.Dialogs
+import Qt.labs.platform as QtLabs
+import Qt.labs.qmlmodels
 import "utils.js" as Utils
 import "dialog.js" as Dialog
 
@@ -20,7 +22,7 @@ ApplicationWindow {
 
             MenuItem {
                 text: qsTr("New...")
-                shortcut: "Ctrl+N"
+                // shortcut: "Ctrl+N"
                 onTriggered: Utils.createDynamicObject(mainRoot, "qrc:/gui/NewInfusoria.qml")
             }
 
@@ -28,7 +30,7 @@ ApplicationWindow {
 
             MenuItem {
                 text: qsTr("Exit")
-                shortcut: "Ctrl+Q"
+                // shortcut: "Ctrl+Q"
                 onTriggered: Qt.quit()
             }
         }
@@ -89,8 +91,12 @@ ApplicationWindow {
         FileOperations.saveList(infuListPath, list)
     }
 
-    ListModel {
+    TableModel {
         id: infuModel
+
+        TableModelColumn { display:  "name" }
+        TableModelColumn { display:  "state" }
+        TableModelColumn { display:  "path" }
 
         function addInfuList(list, isUrl) {
             for (var i in list) {
@@ -121,34 +127,33 @@ ApplicationWindow {
             id: infuTable
             Layout.fillWidth: true
             Layout.fillHeight: true
-            frameVisible: false
             model: infuModel
-            selectionMode: SelectionMode.ExtendedSelection
+            selectionMode: TableView.ExtendedSelection
 
-            onDoubleClicked: openEditor()
+            // onDoubleClicked: openEditor()
 
             function openEditor() {
                 Utils.createDynamicObject(mainRoot, "qrc:/gui/Editor.qml", {
-                                              name: infuModel.get(currentRow).name,
-                                              path: infuModel.get(currentRow).path,
-                                              row: currentRow
-                                          })
+                    name: infuModel.get(currentRow).name,
+                    path: infuModel.get(currentRow).path,
+                    row: currentRow
+                })
             }
 
-            TableViewColumn {
-                title: qsTr("Name")
-                role: "name"
-            }
+            // TableViewColumn {
+            //     title: qsTr("Name")
+            //     role: "name"
+            // }
 
-            TableViewColumn {
-                title: qsTr("State")
-                role: "state"
-            }
+            // TableViewColumn {
+            //     title: qsTr("State")
+            //     role: "state"
+            // }
 
-            TableViewColumn {
-                title: qsTr("Path")
-                role: "path"
-            }
+            // TableViewColumn {
+            //     title: qsTr("Path")
+            //     role: "path"
+            // }
         }
 
         ColumnLayout {

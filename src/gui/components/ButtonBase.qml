@@ -1,10 +1,10 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
 
 Button {
     objectName: "ButtonBase"
-    activeFocusOnPress: true
-    isDefault: activeFocus
+    // activeFocusOnPress: true
+    // isDefault: activeFocus
 
     Action {
         shortcut: "Return"

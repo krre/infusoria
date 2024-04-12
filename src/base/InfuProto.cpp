@@ -40,9 +40,7 @@ void InfuProto::send(QJsonDocument& message, QWebSocket* client) {
 void InfuProto::receive(const QString& message, QWebSocket* client) {
 //    LOGGER() << QString("RECEIVE from IP=") + client->peerAddress().toString() << QString("PORT=") + QString::number(client->peerPort()) + ":" << message;
 
-    QByteArray ba;
-    ba.append(message);
-    QJsonDocument receiveDoc = QJsonDocument::fromJson(ba);
+    QJsonDocument receiveDoc = QJsonDocument::fromJson(message.toUtf8());
     QString sender = receiveDoc.object()["sender"].toString();
     QString action = receiveDoc.object()["action"].toString();
     if (sender == "infusorium") {
