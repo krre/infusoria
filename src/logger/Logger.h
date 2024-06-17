@@ -6,7 +6,6 @@
 
 class Logger : public QObject {
     Q_OBJECT
-
 public:
     static Logger& instance();
 

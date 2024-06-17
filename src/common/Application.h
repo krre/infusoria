@@ -7,7 +7,6 @@ class Application : public QApplication {
     Q_PROPERTY(QString buildDate READ buildDate CONSTANT)
     Q_PROPERTY(QString qtVersion READ qtVersion CONSTANT)
     Q_PROPERTY(QString applicationDirPath READ applicationDirPath CONSTANT)
-
 public:
     Application(int& argc, char* argv[]);
 

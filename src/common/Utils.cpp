@@ -14,4 +14,3 @@ bool Utils::isFileExists(const QString& filePath) {
 bool Utils::removeFile(const QString& filePath) {
     return QFile::remove(filePath);
 }
-
