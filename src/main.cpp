@@ -11,7 +11,6 @@
 
 QPointer<Settings> settings;
 QPointer<InfuController> infuController;
-QPointer<WebSocketManager> webSocketManager;
 
 int main(int argc, char* argv[]) {
     // Hack to fix styling with Qt 6.5 on GTK3
@@ -33,11 +32,11 @@ int main(int argc, char* argv[]) {
     }
 
     infuController = new InfuController;
-    webSocketManager = new WebSocketManager;
 
     Utils utils;
     Init init;
     FileOperations fileOperations;
+    WebSocketManager webSocketManager;
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("APP", &app);
