@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 
     Application app(argc, argv);
     app.setApplicationName("Infusoria");
-    app.setOrganizationName("Infusoria");
+    app.setOrganizationName("Cyberlife");
     app.setApplicationVersion("0.1.0");
 
     ::settings = new Settings;
