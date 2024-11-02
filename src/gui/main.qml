@@ -55,7 +55,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        var geometry = Settings.map("Gui")
+        var geometry = Settings.map("MainWindow")
         if (Object.keys(geometry).length) {
             x = geometry.x
             y = geometry.y
@@ -78,7 +78,7 @@ ApplicationWindow {
     }
 
     onClosing: {
-        Settings.setMap("Gui", {
+        Settings.setMap("MainWindow", {
             x: x,
             y: y,
             width: width,
