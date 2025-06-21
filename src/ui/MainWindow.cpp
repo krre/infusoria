@@ -3,10 +3,17 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QCoreApplication>
+#include <QCloseEvent>
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-    resize(800, 600);
     createActions();
+    readSettings();
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+    writeSettings();
+    event->accept();
 }
 
 void MainWindow::showAbout() {
@@ -21,9 +28,30 @@ Copyright © %7, Vladimir Zarypov)")
         Application::BuildDate, Application::BuildTime, Application::Url, Application::Years));
 }
 
+void MainWindow::readSettings() {
+    QSettings settings;
+    QByteArray geometry = settings.value("MainWindow/geometry").toByteArray();
+
+    if (!geometry.isEmpty()) {
+        restoreGeometry(geometry);
+    } else {
+        const QRect availableGeometry = QGuiApplication::screens().constFirst()->availableGeometry();
+        resize(availableGeometry.width() / 2, availableGeometry.height() / 2);
+        move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
+    }
+
+    restoreState(settings.value("MainWindow/state").toByteArray());
+}
+
+void MainWindow::writeSettings() {
+    QSettings settings;
+    settings.setValue("MainWindow/geometry", saveGeometry());
+    settings.setValue("MainWindow/state", saveState());
+}
+
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
-    fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, qApp, &QCoreApplication::quit);
+    fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);
