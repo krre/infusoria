@@ -9,6 +9,8 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets
 )
 
+qt_standard_project_setup()
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_subdirectory(app)

@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "core/Application.h"
+#include "settings/FileSettings.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QCoreApplication>
@@ -7,6 +8,7 @@
 #include <QSettings>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+    m_fileSettings = new FileSettings(this);
     createActions();
     readSettings();
 }
@@ -29,8 +31,7 @@ Copyright © %7, Vladimir Zarypov)")
 }
 
 void MainWindow::readSettings() {
-    QSettings settings;
-    QByteArray geometry = settings.value("MainWindow/geometry").toByteArray();
+    QByteArray geometry = m_fileSettings->mainWindowGeometry();
 
     if (!geometry.isEmpty()) {
         restoreGeometry(geometry);
@@ -40,13 +41,12 @@ void MainWindow::readSettings() {
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
 
-    restoreState(settings.value("MainWindow/state").toByteArray());
+    restoreState(m_fileSettings->mainWindowState());
 }
 
 void MainWindow::writeSettings() {
-    QSettings settings;
-    settings.setValue("MainWindow/geometry", saveGeometry());
-    settings.setValue("MainWindow/state", saveState());
+    m_fileSettings->setMainWindowGeometry(saveGeometry());
+    m_fileSettings->setMainWindowState(saveState());
 }
 
 void MainWindow::createActions() {
