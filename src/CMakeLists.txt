@@ -4,6 +4,8 @@ add_library(common STATIC
     core/Application.cpp core/Application.h
     ui/MainWindow.cpp ui/MainWindow.h
     settings/FileSettings.cpp settings/FileSettings.h settings/Settings.cpp settings/Settings.h
+    ui/dialog/NewOrganism.cpp ui/dialog/NewOrganism.h ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
+    ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

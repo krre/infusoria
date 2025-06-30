@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "dialog/NewOrganism.h"
 #include "core/Application.h"
 #include "settings/FileSettings.h"
 #include <QMenuBar>
@@ -16,6 +17,13 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 void MainWindow::closeEvent(QCloseEvent* event) {
     writeSettings();
     event->accept();
+}
+
+void MainWindow::create() {
+    NewOrganism newOrganism;
+
+    if (newOrganism.exec() == QDialog::Accepted) {
+    }
 }
 
 void MainWindow::showAbout() {
@@ -51,6 +59,8 @@ void MainWindow::writeSettings() {
 
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
+    fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
+    fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
