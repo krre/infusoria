@@ -15,8 +15,7 @@ NewOrganism::NewOrganism() {
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewOrganism::setOkButtonState);
 
-    m_directoryBrowseLayout = new BrowseLayout;
-    m_directoryBrowseLayout->lineEdit()->setText(Utils::workDir());
+    m_directoryBrowseLayout = new BrowseLayout(Utils::workDir());
     connect(m_directoryBrowseLayout->lineEdit(), &QLineEdit::textChanged, this, &NewOrganism::setOkButtonState);
 
     auto formLayout = new QFormLayout;

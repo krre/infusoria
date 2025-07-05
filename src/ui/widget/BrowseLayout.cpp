@@ -3,8 +3,8 @@
 #include <QPushButton>
 #include <QFileDialog>
 
-BrowseLayout::BrowseLayout() {
-    m_lineEdit = new QLineEdit;
+BrowseLayout::BrowseLayout(const QString& dir) {
+    m_lineEdit = new QLineEdit(dir);
 
     auto pushButton = new QPushButton(tr("Browse..."));
     connect(pushButton, &QPushButton::clicked, this, &BrowseLayout::onClicked);
