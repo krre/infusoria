@@ -8,6 +8,7 @@ add_library(common STATIC
     ui/dialog/NewOrganism.cpp ui/dialog/NewOrganism.h
     ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
     ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
+    core/Utils.h core/Utils.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)
