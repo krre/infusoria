@@ -1,6 +1,5 @@
 #include "NewOrganism.h"
 #include "ui/widget/BrowseLayout.h"
-#include "core/Utils.h"
 #include <QLineEdit>
 #include <QIntValidator>
 #include <QFormLayout>
@@ -9,13 +8,13 @@
 #include <QMessageBox>
 #include <QDir>
 
-NewOrganism::NewOrganism() {
+NewOrganism::NewOrganism(const QString& workDir) {
     setWindowTitle(tr("New Organism"));
 
     m_nameLineEdit = new QLineEdit;
     connect(m_nameLineEdit, &QLineEdit::textChanged, this, &NewOrganism::setOkButtonState);
 
-    m_directoryBrowseLayout = new BrowseLayout(Utils::workDir());
+    m_directoryBrowseLayout = new BrowseLayout(workDir);
     connect(m_directoryBrowseLayout->lineEdit(), &QLineEdit::textChanged, this, &NewOrganism::setOkButtonState);
 
     auto formLayout = new QFormLayout;

@@ -7,7 +7,7 @@ class QLineEdit;
 class NewOrganism : public StandardDialog {
     Q_OBJECT
 public:
-    NewOrganism();
+    NewOrganism(const QString& workDir);
 
     QString name() const;
     QString directory() const;

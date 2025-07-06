@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "dialog/NewOrganism.h"
+#include "dialog/Preferences.h"
 #include "core/Application.h"
 #include "settings/FileSettings.h"
 #include <QMenuBar>
@@ -20,10 +21,15 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 }
 
 void MainWindow::create() {
-    NewOrganism newOrganism;
+    NewOrganism newOrganism(m_fileSettings->pathWorkDirectory());
 
     if (newOrganism.exec() == QDialog::Accepted) {
     }
+}
+
+void MainWindow::showPreferences() {
+    Preferences preferences(m_fileSettings);
+    preferences.exec();
 }
 
 void MainWindow::showAbout() {
@@ -62,6 +68,9 @@ void MainWindow::createActions() {
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
+
+    auto editMenu = menuBar()->addMenu(tr("Edit"));
+    editMenu->addAction(tr("Preferences..."), this, &MainWindow::showPreferences);
 
     auto helpMenu = menuBar()->addMenu(tr("Help"));
     helpMenu->addAction(tr("About %1...").arg(Application::Name), this, &MainWindow::showAbout);

@@ -9,6 +9,7 @@ add_library(common STATIC
     ui/dialog/StandardDialog.cpp ui/dialog/StandardDialog.h
     ui/widget/BrowseLayout.cpp ui/widget/BrowseLayout.h
     core/Utils.h core/Utils.cpp
+    ui/dialog/Preferences.cpp ui/dialog/Preferences.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

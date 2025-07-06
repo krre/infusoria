@@ -11,6 +11,9 @@ public:
     void setMainWindowState(const  QByteArray& state);
     QByteArray mainWindowState() const;
 
+    void setPathWorkDirectory(const QString& workDirectory);
+    QString pathWorkDirectory() const;
+
 protected:
     virtual void setValue(const QString& key, const QVariant& value) = 0;
     virtual QVariant value(const QString& key, const QVariant& defaultValue = QVariant()) const = 0;
