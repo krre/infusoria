@@ -1,8 +1,8 @@
 #include "Utils.h"
-#include <QDir>
+#include <QStandardPaths>
 
 Utils::Utils() {}
 
 QString Utils::workDir() {
-    return QDir::homePath();
+    return QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 }
