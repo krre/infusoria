@@ -6,10 +6,8 @@ public:
     Database(QObject* parent = nullptr);
     ~Database() override;
 
-    void create(const QString& filepath);
-    void open(const QString& filepath);
-    void close();
-    bool isOpen() const;
+    void open(const QString& filePath);
+    QString filePath() const;
 
     QSqlQuery exec(const QString& sql, const QVariantMap& params = QVariantMap()) const;
 
