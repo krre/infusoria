@@ -14,6 +14,7 @@ add_library(common STATIC
     core/Exception.cpp core/Exception.h
     database/DatabaseException.cpp database/DatabaseException.h
     organism/Organism.h organism/Organism.cpp
+    ui/Dashboard.h ui/Dashboard.cpp
 )
 
 # For visibility in IDE (e.g., Qt Creator)

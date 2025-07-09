@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "Dashboard.h"
 #include "dialog/NewOrganism.h"
 #include "dialog/Preferences.h"
 #include "core/Application.h"
@@ -24,6 +25,8 @@ void MainWindow::create() {
     NewOrganism newOrganism(m_fileSettings->pathWorkDirectory());
 
     if (newOrganism.exec() == QDialog::Accepted) {
+        m_dashboard = new Dashboard(newOrganism.name(), newOrganism.directory());
+        setCentralWidget(m_dashboard);
     }
 }
 

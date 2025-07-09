@@ -2,6 +2,7 @@
 #include <QMainWindow>
 
 class FileSettings;
+class Dashboard;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -24,4 +25,5 @@ private:
     void createActions();
 
     FileSettings* m_fileSettings = nullptr;
+    Dashboard* m_dashboard = nullptr;
 };
