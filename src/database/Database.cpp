@@ -44,3 +44,16 @@ QSqlQuery Database::exec(const QString& sql, const QVariantMap& params) const {
 
     return query;
 }
+
+void Database::updateMetaValue(const QString& name, const QVariant& value) const {
+    exec(QString("UPDATE meta SET %1 = :value").arg(name), { { "value", value } });
+}
+
+QVariant Database::metaValue(const QString& name) const {
+    if (!m_db.tables().contains("meta")) {
+        return QVariant();
+    }
+
+    QSqlQuery query = exec(QString("SELECT %1 FROM meta").arg(name));
+    return query.first() ? query.value(name) : QVariant();
+}
