@@ -1,10 +1,11 @@
 #include "Database.h"
+#include "Migrater.h"
 #include "DatabaseException.h"
 #include <QSqlQuery>
 #include <QSqlError>
 
 Database::Database(QObject* parent) : QObject(parent) {
-    m_db = QSqlDatabase::addDatabase("QSQLITE", "infusoria_simulacrum");
+    m_db = QSqlDatabase::addDatabase("QSQLITE", "infusoria_organism");
 }
 
 Database::~Database() {
@@ -24,6 +25,9 @@ void Database::open(const QString& filePath) {
     if (!m_db.open()) {
         throw DatabaseError(m_db.lastError());
     }
+
+    Migrater migrater(this);
+    migrater.run();
 }
 
 QString Database::filePath() const {
@@ -31,7 +35,7 @@ QString Database::filePath() const {
 }
 
 QSqlQuery Database::exec(const QString& sql, const QVariantMap& params) const {
-    QSqlQuery query;
+    QSqlQuery query(m_db);
     query.prepare(sql);
 
     for (auto [key, value] : params.asKeyValueRange()) {

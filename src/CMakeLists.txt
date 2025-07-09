@@ -15,6 +15,7 @@ add_library(common STATIC
     database/DatabaseException.cpp database/DatabaseException.h
     organism/Organism.h organism/Organism.cpp
     ui/Dashboard.h ui/Dashboard.cpp
+    database/Migrater.cpp database/Migrater.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)
