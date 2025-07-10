@@ -28,8 +28,10 @@ void MainWindow::create() {
     NewOrganism newOrganism(m_fileSettings->pathWorkDirectory());
 
     if (newOrganism.exec() == QDialog::Accepted) {
+        closeFile();
         m_dashboard = new Dashboard(newOrganism.name(), newOrganism.directory());
         setCentralWidget(m_dashboard);
+        emit fileOpenChanged(true);
         changeWindowTitle();
     }
 }
@@ -41,11 +43,24 @@ void MainWindow::open() {
 }
 
 void MainWindow::openFile(const QString& filePath) {
+    closeFile();
+
     if (filePath.isEmpty()) return;
     if (!QFile::exists(filePath)) return;
 
     m_dashboard = new Dashboard(filePath);
     setCentralWidget(m_dashboard);
+    emit fileOpenChanged(true);
+    changeWindowTitle();
+}
+
+void MainWindow::closeFile() {
+    setCentralWidget(nullptr);
+
+    delete m_dashboard;
+    m_dashboard = nullptr;
+
+    emit fileOpenChanged(false);
     changeWindowTitle();
 }
 
@@ -101,6 +116,11 @@ void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
+
+    auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeFile);
+    closeAction->setEnabled(false);
+    connect(this, &MainWindow::fileOpenChanged, closeAction, &QAction::setEnabled);
+
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 

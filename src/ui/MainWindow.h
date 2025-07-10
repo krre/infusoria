@@ -9,6 +9,9 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget* parent = nullptr);
 
+signals:
+    void fileOpenChanged(bool isOpen);
+
 protected:
     void closeEvent(QCloseEvent* event) override;
 
@@ -17,6 +20,7 @@ private slots:
     void open();
 
     void openFile(const QString& filePath);
+    void closeFile();
 
     void showPreferences();
     void showAbout();
