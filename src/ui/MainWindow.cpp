@@ -14,6 +14,7 @@
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_fileSettings = new FileSettings(this);
+    changeWindowTitle();
     createActions();
     readSettings();
 }
@@ -29,6 +30,7 @@ void MainWindow::create() {
     if (newOrganism.exec() == QDialog::Accepted) {
         m_dashboard = new Dashboard(newOrganism.name(), newOrganism.directory());
         setCentralWidget(m_dashboard);
+        changeWindowTitle();
     }
 }
 
@@ -44,6 +46,7 @@ void MainWindow::openFile(const QString& filePath) {
 
     m_dashboard = new Dashboard(filePath);
     setCentralWidget(m_dashboard);
+    changeWindowTitle();
 }
 
 void MainWindow::showPreferences() {
@@ -82,6 +85,16 @@ void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
     m_fileSettings->setMainWindowLastFile(m_dashboard->organism()->filePath());
+}
+
+void MainWindow::changeWindowTitle() {
+    QString title = Application::applicationName();
+
+    if (m_dashboard) {
+        title = m_dashboard->organism()->name() + " - " + title;
+    }
+
+    setWindowTitle(title);
 }
 
 void MainWindow::createActions() {

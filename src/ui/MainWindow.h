@@ -25,6 +25,7 @@ private:
     void readSettings();
     void writeSettings();
 
+    void changeWindowTitle();
     void createActions();
 
     FileSettings* m_fileSettings = nullptr;
