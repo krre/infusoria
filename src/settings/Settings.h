@@ -11,6 +11,9 @@ public:
     void setMainWindowState(const  QByteArray& state);
     QByteArray mainWindowState() const;
 
+    void setMainWindowLastFile(const QString& lastFile);
+    QString mainWindowLastFile() const;
+
     void setPathWorkDirectory(const QString& workDirectory);
     QString pathWorkDirectory() const;
 

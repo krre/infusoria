@@ -4,11 +4,13 @@
 #include "dialog/Preferences.h"
 #include "core/Application.h"
 #include "settings/FileSettings.h"
+#include "organism/Organism.h"
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QCoreApplication>
 #include <QCloseEvent>
 #include <QSettings>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_fileSettings = new FileSettings(this);
@@ -28,6 +30,20 @@ void MainWindow::create() {
         m_dashboard = new Dashboard(newOrganism.name(), newOrganism.directory());
         setCentralWidget(m_dashboard);
     }
+}
+
+void MainWindow::open() {
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open Organism"), m_fileSettings->pathWorkDirectory(),
+                                                    tr("All Files (*);;Database Files (*.db)"));
+    openFile(filePath);
+}
+
+void MainWindow::openFile(const QString& filePath) {
+    if (filePath.isEmpty()) return;
+    if (!QFile::exists(filePath)) return;
+
+    m_dashboard = new Dashboard(filePath);
+    setCentralWidget(m_dashboard);
 }
 
 void MainWindow::showPreferences() {
@@ -59,16 +75,19 @@ void MainWindow::readSettings() {
     }
 
     restoreState(m_fileSettings->mainWindowState());
+    openFile(m_fileSettings->mainWindowLastFile());
 }
 
 void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
+    m_fileSettings->setMainWindowLastFile(m_dashboard->organism()->filePath());
 }
 
 void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
+    fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
     fileMenu->addSeparator();
     fileMenu->addAction(tr("Exit"), Qt::CTRL | Qt::Key_Q, this, &QMainWindow::close);
 

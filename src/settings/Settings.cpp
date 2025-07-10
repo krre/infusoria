@@ -4,6 +4,7 @@
 namespace MainWindow {
     constexpr auto Geometry = "MainWindow/geometry";
     constexpr auto State = "MainWindow/state";
+    constexpr auto LastFile = "MainWindow/lastFile";
 }
 
 namespace Path {
@@ -24,6 +25,14 @@ void Settings::setMainWindowState(const QByteArray& state) {
 
 QByteArray Settings::mainWindowState() const {
     return value(MainWindow::State).toByteArray();
+}
+
+void Settings::setMainWindowLastFile(const QString& lastFile) {
+    setValue(MainWindow::LastFile, lastFile);
+}
+
+QString Settings::mainWindowLastFile() const {
+    return value(MainWindow::LastFile).toString();
 }
 
 void Settings::setPathWorkDirectory(const QString& workDirectory) {
