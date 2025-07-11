@@ -37,8 +37,8 @@ QString NewOrganism::directory() const {
 }
 
 void NewOrganism::accept() {
-    if (QDir().exists(directory() + "/" + name())) {
-        QMessageBox::critical(this, QString(), tr("World already exists!"));
+    if (QDir().exists(directory() + "/" + name() + ".db")) {
+        QMessageBox::critical(this, QString(), tr("Organism already exists!"));
     } else {
         StandardDialog::accept();
     }
