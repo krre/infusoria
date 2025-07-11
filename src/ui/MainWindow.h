@@ -2,6 +2,7 @@
 #include <QMainWindow>
 
 class FileSettings;
+class RecentFilesMenu;
 class Dashboard;
 
 class MainWindow : public QMainWindow {
@@ -33,5 +34,6 @@ private:
     void createActions();
 
     FileSettings* m_fileSettings = nullptr;
+    RecentFilesMenu* m_recentFilesMenu = nullptr;
     Dashboard* m_dashboard = nullptr;
 };

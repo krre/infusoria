@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "Dashboard.h"
+#include "RecentFilesMenu.h"
 #include "dialog/NewOrganism.h"
 #include "dialog/Preferences.h"
 #include "core/Application.h"
@@ -31,6 +32,7 @@ void MainWindow::create() {
         closeFile();
         m_dashboard = new Dashboard(newOrganism.name(), newOrganism.directory());
         setCentralWidget(m_dashboard);
+        m_recentFilesMenu->addPath(m_dashboard->organism()->filePath());
         emit fileOpenChanged(true);
         changeWindowTitle();
     }
@@ -50,6 +52,7 @@ void MainWindow::openFile(const QString& filePath) {
 
     m_dashboard = new Dashboard(filePath);
     setCentralWidget(m_dashboard);
+    m_recentFilesMenu->addPath(filePath);
     emit fileOpenChanged(true);
     changeWindowTitle();
 }
@@ -100,6 +103,8 @@ void MainWindow::writeSettings() {
     m_fileSettings->setMainWindowGeometry(saveGeometry());
     m_fileSettings->setMainWindowState(saveState());
     m_fileSettings->setMainWindowLastFile(m_dashboard->organism()->filePath());
+
+    m_fileSettings->setRecentFiles(m_recentFilesMenu->recentFiles());
 }
 
 void MainWindow::changeWindowTitle() {
@@ -116,6 +121,10 @@ void MainWindow::createActions() {
     auto fileMenu = menuBar()->addMenu(tr("File"));
     fileMenu->addAction(tr("New..."), Qt::CTRL | Qt::Key_N, this, &MainWindow::create);
     fileMenu->addAction(tr("Open..."), Qt::CTRL | Qt::Key_O, this, &MainWindow::open);
+
+    m_recentFilesMenu = new RecentFilesMenu(m_fileSettings->recentFiles(), this);
+    connect(m_recentFilesMenu, &RecentFilesMenu::activated, this, &MainWindow::openFile);
+    fileMenu->addAction(m_recentFilesMenu->menuAction());
 
     auto closeAction = fileMenu->addAction(tr("Close"), Qt::CTRL | Qt::Key_W, this, &MainWindow::closeFile);
     closeAction->setEnabled(false);

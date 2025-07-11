@@ -16,6 +16,7 @@ add_library(common STATIC
     organism/Organism.h organism/Organism.cpp
     ui/Dashboard.h ui/Dashboard.cpp
     database/Migrater.cpp database/Migrater.h
+    ui/RecentFilesMenu.cpp ui/RecentFilesMenu.h
 )
 
 # For visibility in IDE (e.g., Qt Creator)

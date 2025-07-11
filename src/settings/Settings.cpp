@@ -7,6 +7,10 @@ namespace MainWindow {
     constexpr auto LastFile = "MainWindow/lastFile";
 }
 
+namespace RecentFiles {
+    constexpr auto Path = "RecentFiles/path";
+}
+
 namespace Path {
     constexpr auto WorkDirectory = "Path/workDirectory";
 }
@@ -33,6 +37,27 @@ void Settings::setMainWindowLastFile(const QString& lastFile) {
 
 QString Settings::mainWindowLastFile() const {
     return value(MainWindow::LastFile).toString();
+}
+
+void Settings::setRecentFiles(const QStringList& recentFiles) {
+    QVariantList list;
+
+    for (const auto& path : recentFiles) {
+        list.append(path);
+    }
+
+    setList(RecentFiles::Path, list);
+}
+
+QStringList Settings::recentFiles() const {
+    QStringList result;
+    const QVariantList recentFiles = list(RecentFiles::Path);
+
+    for (const auto& value : recentFiles) {
+        result.append(value.toString());
+    }
+
+    return result;
 }
 
 void Settings::setPathWorkDirectory(const QString& workDirectory) {
